@@ -10,18 +10,6 @@ public class WordController : MonoBehaviour
     {
         textWord = GetComponent<TextWord>();
     }
-    private void Update()
-    {
-        // Mover el enemigo hacia abajo
-       // transform.Translate(Vector3.down * speed * Time.deltaTime);
-
-        // Si el enemigo llega al fondo, el jugador pierde una vida
-        /*if (transform.position.y < -6f)
-        {
-            GameManager.Instance.LoseLife();
-            Destroy(gameObject);
-        }*/
-    }
 
     public void SetWord(string word)
     {
