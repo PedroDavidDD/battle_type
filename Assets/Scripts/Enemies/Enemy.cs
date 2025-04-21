@@ -61,4 +61,9 @@ public class Enemy : MonoBehaviour
             wordManager.UnregisterEnemy(this);
         }
     }
+
+    public string GetWord()
+    {
+        return word;
+    }
 }

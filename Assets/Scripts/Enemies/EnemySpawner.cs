@@ -81,4 +81,9 @@ public class EnemySpawner : MonoBehaviour
 
         return randomPosition;
     }
+
+    public string[] GetWordList()
+    {
+        return wordList;
+    }
 }

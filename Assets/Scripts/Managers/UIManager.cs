@@ -8,25 +8,61 @@ public class UIManager : MonoBehaviour
     public Text activeWordsText;
     public Text inputText;
 
-    private void Start()
+    private void Update()
     {
+        // Obtener la entrada actual del jugador
+        string currentInputText = GameObject.Find("InputHandler").GetComponent<InputHandler>().GetCurrentInput();
+        inputText.text = currentInputText;
+
+        // Verificar coincidencias de caracteres con las palabras de los enemigos
+        CheckCharacterMatch(currentInputText);
     }
 
-    private void Update()
-    {/*
-        // Actualizar la puntuación y las vidas
-        scoreText.text = "Score: " + GameManager.Instance.score;
-        livesText.text = "Lives: " + GameManager.Instance.lives;
-
-        // Mostrar palabras activas
-        string activeWords = "";
-        foreach (var enemy in FindObjectsOfType<Enemy>())
+    private void CheckCharacterMatch(string currentInputText)
+    {
+        // Iterar sobre todos los enemigos activos
+        foreach (var enemyObject in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            activeWords += enemy.word + "\n";
-        }
-        activeWordsText.text = "Active Words:\n" + activeWords;*/
-        string currentInputText = GameObject.Find("InputHandler").GetComponent<InputHandler>().GetCurrentInput();
+            Enemy enemy = enemyObject.GetComponent<Enemy>();
+            if (enemy == null) continue; // Saltar si falta el script Enemy
 
-        inputText.text = currentInputText;
+            string word = enemy.word; // Palabra asignada al enemigo
+
+            // Buscar el hijo "Body" del enemigo
+            Transform bodyTransform = enemyObject.transform.Find("Body");
+            if (bodyTransform == null)
+            {
+                Debug.LogWarning($"El enemigo {enemyObject.name} no tiene un hijo llamado 'Body'.");
+                continue;
+            }
+
+            // Acceder al SpriteRenderer del hijo "Body"
+            SpriteRenderer bodySpriteRenderer = bodyTransform.GetComponent<SpriteRenderer>();
+            if (bodySpriteRenderer == null)
+            {
+                Debug.LogWarning($"El hijo 'Body' del enemigo {enemyObject.name} no tiene un SpriteRenderer.");
+                continue;
+            }
+
+            // Manejar el caso cuando la entrada del jugador está vacía
+            if (string.IsNullOrEmpty(currentInputText))
+            {
+                // Restaurar el color del SpriteRenderer del hijo "Body" a blanco
+                bodySpriteRenderer.color = Color.white;
+                continue;
+            }
+
+            // Comparar la entrada del jugador con la palabra del enemigo
+            if (currentInputText.Length <= word.Length && word.StartsWith(currentInputText))
+            {
+                // Cambiar el color del SpriteRenderer del hijo "Body" a amarillo
+                bodySpriteRenderer.color = new Color(1f, 0.729f, 0.082f); // Amarillo aproximado
+            }
+            else
+            {
+                // Restaurar el color del SpriteRenderer del hijo "Body" a blanco
+                bodySpriteRenderer.color = Color.white;
+            }
+        }
     }
 }

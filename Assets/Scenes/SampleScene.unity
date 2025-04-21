@@ -1627,7 +1627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaae9c4252eb02048965ef3da3404a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1677090485833127273, guid: cd34a3493a6f1004e849e2b3b6f6dc97, type: 3}
+  enemyPrefab: {fileID: 1887331739875060958, guid: cd34a3493a6f1004e849e2b3b6f6dc97, type: 3}
   spawnInterval: 3
   wordList:
   - apple
