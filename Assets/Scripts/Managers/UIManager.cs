@@ -55,6 +55,7 @@ public class UIManager : MonoBehaviour
             // Comparar la entrada del jugador con la palabra del enemigo
             if (currentInputText.Length <= word.Length && word.StartsWith(currentInputText))
             {
+                activeWordsText.text = "Selected Word: "+word;
                 // Cambiar el color del SpriteRenderer del hijo "Body" a amarillo
                 bodySpriteRenderer.color = new Color(1f, 0.729f, 0.082f); // Amarillo aproximado
             }
