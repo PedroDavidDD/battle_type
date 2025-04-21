@@ -32,4 +32,9 @@ public class InputHandler : MonoBehaviour
 
         Debug.Log("Current Input: " + currentInput);
     }
+
+    public string GetCurrentInput()
+    {
+        return currentInput;
+    }
 }

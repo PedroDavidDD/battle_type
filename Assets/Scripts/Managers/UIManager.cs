@@ -6,6 +6,11 @@ public class UIManager : MonoBehaviour
     public Text scoreText;
     public Text livesText;
     public Text activeWordsText;
+    public Text inputText;
+
+    private void Start()
+    {
+    }
 
     private void Update()
     {/*
@@ -20,5 +25,8 @@ public class UIManager : MonoBehaviour
             activeWords += enemy.word + "\n";
         }
         activeWordsText.text = "Active Words:\n" + activeWords;*/
+        string currentInputText = GameObject.Find("InputHandler").GetComponent<InputHandler>().GetCurrentInput();
+
+        inputText.text = currentInputText;
     }
 }

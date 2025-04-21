@@ -66,7 +66,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private Vector3 GetPositionRange()
+    public Vector3 GetPositionRange()
     {
         // Calcular el rango de spawn basado en la escala del EnemySpawner
         float rangeX = transform.localScale.x * spawnRangeMultiplier;
