@@ -28,15 +28,19 @@ public class EnemyRepeat : MonoBehaviour
 
             // Obtener el script EnemySpawner del GameObject "EnemySpawner"
             EnemySpawner enemySpawner = spawnerPosition.GetComponent<EnemySpawner>();
+            GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
             // Verificar si el script EnemySpawner existe
-            if (enemySpawner != null)
+            if (enemySpawner != null && gameManager != null)
             {
                 // Llamar al método GetPositionRange() desde el script EnemySpawner
                 Vector3 randomPosition = enemySpawner.GetPositionRange();
 
                 // Mover al enemigo a la posición aleatoria generada
                 enemyTransform.position = randomPosition;
+
+
+                gameManager.LoseLife();
             }
             else
             {

@@ -16,6 +16,11 @@ public class UIManager : MonoBehaviour
 
         // Verificar coincidencias de caracteres con las palabras de los enemigos
         CheckCharacterMatch(currentInputText);
+
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        scoreText.text = gameManager.score.ToString();
+        livesText.text = gameManager.lives.ToString();
+
     }
 
     private void CheckCharacterMatch(string currentInputText)
@@ -66,4 +71,5 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
 }

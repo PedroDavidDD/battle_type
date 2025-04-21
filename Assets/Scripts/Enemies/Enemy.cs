@@ -42,14 +42,19 @@ public class Enemy : MonoBehaviour
 
     public void CheckWord(string input)
     {
+
         if (input == word)
         {
             Debug.Log("Palabra correcta. Destruyendo enemigo: " + word);
             Destroy(gameObject); // Destruir el enemigo
+
+            GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            int points = 10;
+            gameManager.AddScore(points);
         }
         else
         {
-            Debug.Log(input+" Palabra INCORRECTA: " + word);
+            Debug.Log(input + " Palabra INCORRECTA: " + word);
         }
     }
 
