@@ -18,8 +18,8 @@ public class UIManager : MonoBehaviour
         CheckCharacterMatch(currentInputText);
 
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        scoreText.text = gameManager.score.ToString();
-        livesText.text = gameManager.lives.ToString();
+        livesText.text = "Lives: " + gameManager.lives.ToString();
+        scoreText.text = "Score: " + gameManager.score.ToString();
 
     }
 
@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
             // Comparar la entrada del jugador con la palabra del enemigo
             if (currentInputText.Length <= word.Length && word.StartsWith(currentInputText))
             {
-                activeWordsText.text = "Selected Word: "+word;
+                activeWordsText.text = "Word: "+word;
                 // Cambiar el color del SpriteRenderer del hijo "Body" a amarillo
                 bodySpriteRenderer.color = new Color(1f, 0.729f, 0.082f); // Amarillo aproximado
             }
