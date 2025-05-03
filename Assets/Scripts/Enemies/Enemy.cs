@@ -1,19 +1,19 @@
+using System;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class Enemy : MonoBehaviour
 {
-    public TextWord textWord;
-    public string word; // Palabra asignada al 
+    [SerializeField] private string word; // Palabra asignada al 
     public float speed = 2f; // Velocidad de movimiento
     private WordManager wordManager;
-
+    [SerializeField] private int enemyLive = 1;
 
     [System.Obsolete]
     private void Start()
     {
         // Obtener la referencia al WordManager
         wordManager = FindObjectOfType<WordManager>();
-        textWord = GetComponent<TextWord>();
 
         if (wordManager != null)
         {
@@ -24,40 +24,15 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Error: WordManager no encontrado.");
         }
+
     }
     private void Update()
     {
         // Mover el enemigo hacia abajo
         transform.Translate(Vector3.down * speed * Time.deltaTime);
-        if (textWord != null) {
-            word = textWord.GetTextWord();
-            Debug.Log("Palabra INICIALIZADa: " + word);
-        }
-        else
-        {
-            Debug.Log("Palabra NO INICIALIZADA: " + textWord);
-        }
 
-    }
-
-    public void CheckWord(string input)
-    {
-
-        if (input == word)
-        {
-            Debug.Log("Palabra correcta. Destruyendo enemigo: " + word);
-            Destroy(gameObject); // Destruir el enemigo
-
-            GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-            int points = 10;
-            gameManager.AddScore(points);
-        }
-        else
-        {
-            Debug.Log(input + " Palabra INCORRECTA: " + word);
-        }
-    }
-
+        enemyLive = word.Length;
+    }    
     private void OnDestroy()
     {
         // Desregistrar el enemigo cuando se destruya
@@ -67,8 +42,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public string GetWord()
+    public string GetEnemyWord()
     {
-        return word;
+        return this.word;
+    }
+
+    public void SetEnemyWord(string word)
+    {
+        this.word = word;
     }
 }

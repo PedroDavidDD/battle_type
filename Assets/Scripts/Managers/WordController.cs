@@ -3,34 +3,29 @@ using UnityEngine.UI;
 
 public class WordController : MonoBehaviour
 {
-    public string currentWord = ""; // Palabra asignada al enemigo
-    public float speed = 2f; // Velocidad de movimiento
-    public TextWord textWord;
+    private TextWord enemyTextWord;
+    private Enemy enemy;
     private void Start()
     {
-        textWord = GetComponent<TextWord>();
+        enemy = GetComponent<Enemy>();
+        enemyTextWord = GetComponentInChildren<TextWord>();
     }
 
-    public void SetWord(string word)
+    private void Update()
     {
-        currentWord = word;
-        Debug.Log("SET: " + textWord);
-        if (textWord != null)
+        if (enemy != null && enemyTextWord != null)
         {
-            textWord.UpdateTextWord(word);
-            Enemy enemyT = GetComponent<Enemy>();
-            enemyT.word = word;
-            Debug.Log("SET WORD");
+            enemyTextWord.UpdateTextWord(enemy.GetEnemyWord());
         }
     }
 
     public void CheckWord(string input)
-    {
+    {/*
         if (input == currentWord)
         {
             //GameManager.Instance.AddScore(10); // Aumentar puntuación
             Destroy(gameObject); // Destruir el enemigo
-        }
+        }*/
     }   // Crear el texto para mostrar la palabra
    
 

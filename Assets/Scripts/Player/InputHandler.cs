@@ -15,22 +15,21 @@ public class InputHandler : MonoBehaviour
                 if (currentInput.Length > 0)
                 {
                     currentInput = currentInput.Substring(0, currentInput.Length - 1);
-                    Debug.Log("Current 1: " + currentInput);
+                    Debug.Log("New Current input: " + currentInput);
                 }
             }
             else if (c == '\n' || c == '\r') // Enter (confirmar)
             {
                 wordManager.CheckInput(currentInput);
-                Debug.Log("Enviado input: "+currentInput);
+                Debug.Log("Enter input: "+currentInput);
                 currentInput = ""; // Limpiar la entrada después de confirmar
             }
             else
             {
                 currentInput += c;
+                Debug.Log("Libre input: " + c);
             }
         }
-
-        Debug.Log("Current Input: " + currentInput);
     }
 
     public string GetCurrentInput()

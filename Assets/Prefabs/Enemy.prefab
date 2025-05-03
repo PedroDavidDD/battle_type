@@ -160,9 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c9e8c6e5da5c3489c52d26b5692696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWord: carro
-  speed: 2
-  textWord: {fileID: 0}
+  enemyTextWord: {fileID: 0}
 --- !u!1 &1887331739875060958
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,9 +212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e9095d0825eaa9498c6155be7160492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textWord: {fileID: 8031601536616969280}
   word: 
   speed: 0.5
+  enemyLive: 1
 --- !u!61 &6195401068140630652
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -275,9 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c9e8c6e5da5c3489c52d26b5692696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWord: 
-  speed: 2
-  textWord: {fileID: 8031601536616969280}
+  enemyTextWord: {fileID: 0}
 --- !u!50 &8446279892577206503
 Rigidbody2D:
   serializedVersion: 5
@@ -470,7 +466,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: test
 --- !u!1 &7120540942656147009
 GameObject:
   m_ObjectHideFlags: 0

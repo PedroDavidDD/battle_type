@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
             Enemy enemy = enemyObject.GetComponent<Enemy>();
             if (enemy == null) continue; // Saltar si falta el script Enemy
 
-            string word = enemy.word; // Palabra asignada al enemigo
+            string word = enemy.GetEnemyWord(); // Palabra asignada al enemigo
 
             // Buscar el hijo "Body" del enemigo
             Transform bodyTransform = enemyObject.transform.Find("Body");

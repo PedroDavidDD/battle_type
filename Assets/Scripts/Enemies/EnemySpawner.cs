@@ -54,15 +54,10 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
 
         // Asignar una palabra al enemigo
-        WordController wordController = enemy.GetComponent<WordController>();
-        if (wordController != null)
+        Enemy enemyCustom = enemy.GetComponent<Enemy>();
+        if (enemyCustom != null)
         {
-            wordController.SetWord(nextWord);
-            Debug.Log("Palabra asignada: " + nextWord);
-        }
-        else
-        {
-            Debug.LogError("Error: El prefab del enemigo no tiene el script WordController adjunto.");
+            enemyCustom.SetEnemyWord(nextWord);
         }
     }
 
