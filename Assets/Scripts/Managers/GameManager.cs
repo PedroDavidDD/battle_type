@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public int score = 0;
-    public int lives = 10;
+    public int lives = 100;
 
     private bool isGameOver = false; // Indica si el juego ha terminado
 
@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    private void Start()
+    {
+        lives = 110;
     }
 
     public void AddScore(int points)

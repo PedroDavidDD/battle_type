@@ -62,6 +62,9 @@ public class Enemy : MonoBehaviour
             Debug.Log("El enemigo ha sido derrotado.");
             Destroy(gameObject);
             EnemyPoints(5);
+
+            InputHandler inputHandler = GameObject.Find("InputHandler").GetComponent<InputHandler>();
+            inputHandler.SetCurrentInput("");
         }
     }
     private void EnemyPoints(int points = 10)

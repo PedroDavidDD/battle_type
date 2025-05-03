@@ -35,6 +35,10 @@ public class InputHandler : MonoBehaviour
 
     public string GetCurrentInput()
     {
-        return currentInput;
+        return this.currentInput;
+    }
+    public void SetCurrentInput(string currentInput)
+    {
+        this.currentInput = currentInput;
     }
 }

@@ -9,7 +9,23 @@ public class WordManager : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float bulletSpacing = 0.5f;
+    
+    // Rastrea el progreso por palabra
+    private Dictionary<string, int> processedCharacters = new Dictionary<string, int>();
+    private string selectedWord = ""; // Palabra seleccionada
 
+    public void SetSelectedWord(string word)
+    {
+        if (selectedWord != word)
+        {
+            selectedWord = word;
+
+            processedCharacters[selectedWord] = processedCharacters.ContainsKey(selectedWord)
+                ? processedCharacters[selectedWord]
+                : 0;
+            Debug.Log($"Palabra seleccionada: {selectedWord}");
+        }
+    }
     public void RegisterEnemy(Enemy enemy)
     {
         activeEnemies.Add(enemy);
@@ -19,23 +35,28 @@ public class WordManager : MonoBehaviour
     {
         activeEnemies.Remove(enemy);
     }
-
-    public void CheckInput(string input)
+    public void CheckInput(string currentInput)
     {
         foreach (var enemy in activeEnemies)
         {
-            ForCharacters(input, enemy);
-            // ForWord(input, enemyWord);
+            if (currentInput.Length <= enemy.GetEnemyWord().Length && enemy.GetEnemyWord().StartsWith(currentInput))
+            {                
+                ForCharacters(currentInput, enemy);
+                // ForWord(input, enemyWord);
+            }
         }
+        LogDictionaryContents();
     }
     private void ForCharacters(string input, Enemy enemy)
     {
-        string enemyWord = enemy.GetEnemyWord();
         int matchCount = 0;
 
-        for (int i = 0; i < input.Length && i < enemyWord.Length; i++)
+        // Obtener el progreso actual para la palabra seleccionada
+        int processedCount = processedCharacters.ContainsKey(selectedWord) ? processedCharacters[selectedWord] : 0;
+
+        for (int i = processedCount; i < input.Length && i < selectedWord.Length; i++)
         {
-            if (input[i] == enemyWord[i])
+            if (input[i] == selectedWord[i])
             {
                 matchCount++;
             }
@@ -44,13 +65,14 @@ public class WordManager : MonoBehaviour
                 break;
             }
         }
-
+        // car - caro
         // Disparar una bala por cada carácter coincidente
-        for (int i = 0; i < matchCount; i++)
+        if (matchCount > 0)
         {
             // ShootBullet(i);
-            Debug.Log("disparo - WordManager: " + i + "mathcount "+ matchCount);
-            enemy.ReduceLive(1);
+            enemy.ReduceLive(matchCount);
+            // Actualizar el progreso de la palabra seleccionada
+            processedCharacters[selectedWord] += matchCount;
         }
 
     }
@@ -82,5 +104,12 @@ public class WordManager : MonoBehaviour
         int points = 10;
         gameManager.AddScore(points);
     }
-
+    private void LogDictionaryContents()
+    {
+        Debug.Log("Estado actual del diccionario 'processedCharacters':");
+        foreach (var entry in processedCharacters)
+        {
+            Debug.Log($"Palabra: {entry.Key}, Progreso: {entry.Value}");
+        }
+    }
 }

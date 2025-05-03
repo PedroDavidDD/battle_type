@@ -61,6 +61,11 @@ public class UIManager : MonoBehaviour
             if (currentInputText.Length <= word.Length && word.StartsWith(currentInputText))
             {
                 activeWordsText.text = "Word: "+word;
+
+                GameObject GOWordManager = GameObject.Find("WordManager");
+                WordManager wordManager = GOWordManager.gameObject.GetComponent<WordManager>();
+                wordManager.SetSelectedWord( word );
+
                 // Cambiar el color del SpriteRenderer del hijo "Body" a amarillo
                 bodySpriteRenderer.color = new Color(1f, 0.729f, 0.082f); // Amarillo aproximado
             }
