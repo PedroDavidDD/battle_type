@@ -416,7 +416,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -3.31, z: -1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1887049377}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &260411814
@@ -1354,9 +1355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41596f55957c7dd4faffb33e0dba0d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
-  shootPoint: {fileID: 0}
-  bulletSpacing: 0.5
+  bulletPrefab: {fileID: 7587069610961297503, guid: 1d2fedde1228ee943a782fa5cce93710, type: 3}
+  shootPoint: {fileID: 1887049377}
 --- !u!1 &1120973064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1976,6 +1976,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1839327633}
   m_CullTransparentMesh: 1
+--- !u!1 &1887049376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1887049377}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1887049377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887049376}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.53, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 161477114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1958815252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,6 +2128,7 @@ MonoBehaviour:
   livesText: {fileID: 402181698}
   activeWordsText: {fileID: 1152286850}
   inputText: {fileID: 1653687521}
+  wordManager: {fileID: 1116120822}
 --- !u!4 &2095277851
 Transform:
   m_ObjectHideFlags: 0

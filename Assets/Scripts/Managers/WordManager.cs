@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -8,24 +9,12 @@ public class WordManager : MonoBehaviour
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform shootPoint;
-    [SerializeField] private float bulletSpacing = 0.5f;
     
-    // Rastrea el progreso por palabra
+    // Rastrea el progreso por cada palabra que se registra
     private Dictionary<string, int> processedCharacters = new Dictionary<string, int>();
-    private string selectedWord = ""; // Palabra seleccionada
+    // Palabra seleccionada
+    private string selectedWord = "";
 
-    public void SetSelectedWord(string word)
-    {
-        if (selectedWord != word)
-        {
-            selectedWord = word;
-
-            processedCharacters[selectedWord] = processedCharacters.ContainsKey(selectedWord)
-                ? processedCharacters[selectedWord]
-                : 0;
-            Debug.Log($"Palabra seleccionada: {selectedWord}");
-        }
-    }
     public void RegisterEnemy(Enemy enemy)
     {
         activeEnemies.Add(enemy);
@@ -39,8 +28,14 @@ public class WordManager : MonoBehaviour
     {
         foreach (var enemy in activeEnemies)
         {
-            if (currentInput.Length <= enemy.GetEnemyWord().Length && enemy.GetEnemyWord().StartsWith(currentInput))
-            {                
+            selectedWord = enemy.GetEnemyWord();
+
+            if (currentInput.Length <= selectedWord.Length && selectedWord.StartsWith(currentInput))
+            {
+                // Modifica el diccionario para asegurarse de que una clave exista - inicializa las palabras
+                processedCharacters[selectedWord] = processedCharacters.ContainsKey(selectedWord)
+                    ? processedCharacters[selectedWord] : 0;
+
                 ForCharacters(currentInput, enemy);
                 // ForWord(input, enemyWord);
             }
@@ -51,8 +46,9 @@ public class WordManager : MonoBehaviour
     {
         int matchCount = 0;
 
-        // Obtener el progreso actual para la palabra seleccionada
-        int processedCount = processedCharacters.ContainsKey(selectedWord) ? processedCharacters[selectedWord] : 0;
+        // Consulta el valor de una clave sin modificar el diccionario 
+        int processedCount = processedCharacters.ContainsKey(selectedWord) 
+            ? processedCharacters[selectedWord] : 0;
 
         for (int i = processedCount; i < input.Length && i < selectedWord.Length; i++)
         {
@@ -65,22 +61,37 @@ public class WordManager : MonoBehaviour
                 break;
             }
         }
-        // car - caro
         // Disparar una bala por cada carácter coincidente
         if (matchCount > 0)
         {
-            // ShootBullet(i);
-            enemy.ReduceLive(matchCount);
+            ShootBullet(enemy.transform);
+            //enemy.ReduceLive(matchCount);
             // Actualizar el progreso de la palabra seleccionada
             processedCharacters[selectedWord] += matchCount;
         }
+        Debug.Log("total matchCount " + matchCount);
+        Debug.Log("total selectedWord " + selectedWord);
 
     }
     // Dispara una bala en una posición específica.
-    private void ShootBullet(int index)
+    private void ShootBullet(Transform target)
     {
-        Vector3 spawnPosition = shootPoint.position + Vector3.right * index * bulletSpacing;
-        Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
+        if (bulletPrefab == null || shootPoint == null)
+        {
+            Debug.LogError("Falta asignar el prefab de la bala o el punto de disparo.");
+            return;
+        }
+
+        GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+
+        // Asignar el objetivo a la bala
+        Ball ballScript = bullet.GetComponent<Ball>();
+        Debug.Log("ballScript "+ballScript);
+        if (ballScript != null)
+        {
+            ballScript.SetTarget(target);
+            Debug.Log("ballScript actualizado el Target" + ballScript);
+        }
     }
 
     private void ForWord(string input, string enemyWord)

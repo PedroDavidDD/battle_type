@@ -6,7 +6,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private string word; // Palabra asignada al 
-    public float speed = 2f; // Velocidad de movimiento
+    public float speed = .5f; // Velocidad de movimiento
     private WordManager wordManager;
     [SerializeField] private int enemyLive = 1;
 
