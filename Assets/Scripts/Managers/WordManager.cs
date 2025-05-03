@@ -22,20 +22,15 @@ public class WordManager : MonoBehaviour
 
     public void CheckInput(string input)
     {
-        Debug.Log("Enviado WorlManager CheckInput: "+ input);
         foreach (var enemy in activeEnemies)
         {
-            CheckWord(input, enemy.GetEnemyWord());
-            Debug.Log("WorlManager: "+ input);
+            ForCharacters(input, enemy);
+            // ForWord(input, enemyWord);
         }
     }
-    public void CheckWord(string input, string enemyWord)
+    private void ForCharacters(string input, Enemy enemy)
     {
-        ForCharacters(input, enemyWord);
-        // ForWord(input, enemyWord);
-    }
-    private void ForCharacters(string input, string enemyWord)
-    {
+        string enemyWord = enemy.GetEnemyWord();
         int matchCount = 0;
 
         for (int i = 0; i < input.Length && i < enemyWord.Length; i++)
@@ -54,7 +49,8 @@ public class WordManager : MonoBehaviour
         for (int i = 0; i < matchCount; i++)
         {
             // ShootBullet(i);
-            Debug.Log("disparo: " + i);
+            Debug.Log("disparo - WordManager: " + i + "mathcount "+ matchCount);
+            enemy.ReduceLive(1);
         }
 
     }

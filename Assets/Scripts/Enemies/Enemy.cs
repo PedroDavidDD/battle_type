@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Windows;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Enemy : MonoBehaviour
     public float speed = 2f; // Velocidad de movimiento
     private WordManager wordManager;
     [SerializeField] private int enemyLive = 1;
+
+    public int EnemyLive { get => enemyLive; set => enemyLive = value; }
 
     [System.Obsolete]
     private void Start()
@@ -25,13 +28,12 @@ public class Enemy : MonoBehaviour
             Debug.LogError("Error: WordManager no encontrado.");
         }
 
+        EnemyLive = GetEnemyWord().Length;
     }
     private void Update()
     {
         // Mover el enemigo hacia abajo
         transform.Translate(Vector3.down * speed * Time.deltaTime);
-
-        enemyLive = word.Length;
     }    
     private void OnDestroy()
     {
@@ -50,5 +52,22 @@ public class Enemy : MonoBehaviour
     public void SetEnemyWord(string word)
     {
         this.word = word;
+    }
+    public void ReduceLive(int amount = 1)
+    {
+        this.enemyLive -= amount;
+        Debug.Log("vida actual pero reducido del enemigo - Enemy: " + enemyLive);
+        if (this.enemyLive <= 0)
+        {
+            Debug.Log("El enemigo ha sido derrotado.");
+            Destroy(gameObject);
+            EnemyPoints(5);
+        }
+    }
+    private void EnemyPoints(int points = 10)
+    {
+        GameManager gameManager = GameObject.Find("GameManager")
+            .GetComponent<GameManager>();
+        gameManager.AddScore(points);
     }
 }

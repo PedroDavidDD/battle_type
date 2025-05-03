@@ -3,20 +3,24 @@ using UnityEngine.UI;
 
 public class WordController : MonoBehaviour
 {
-    private TextWord enemyTextWord;
-    private Enemy enemy;
-    private void Start()
+    [SerializeField] private Enemy enemy;
+
+    [SerializeField] private Text enemyTextWord;
+    [SerializeField] private Slider liveEnemy;
+    private void Awake()
     {
         enemy = GetComponent<Enemy>();
-        enemyTextWord = GetComponentInChildren<TextWord>();
     }
-
     private void Update()
     {
-        if (enemy != null && enemyTextWord != null)
-        {
-            enemyTextWord.UpdateTextWord(enemy.GetEnemyWord());
-        }
+        if (enemy == null) return;
+        if (enemyTextWord == null) return;
+        if (liveEnemy == null) return;
+
+        enemyTextWord.text = enemy.GetEnemyWord();
+
+        liveEnemy.maxValue = enemy.GetEnemyWord().Length;
+        liveEnemy.value = enemy.EnemyLive;
     }
 
     public void CheckWord(string input)

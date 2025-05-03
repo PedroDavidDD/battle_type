@@ -20,14 +20,15 @@ public class InputHandler : MonoBehaviour
             }
             else if (c == '\n' || c == '\r') // Enter (confirmar)
             {
-                wordManager.CheckInput(currentInput);
+                // wordManager.CheckInput(currentInput);
                 Debug.Log("Enter input: "+currentInput);
-                currentInput = ""; // Limpiar la entrada después de confirmar
+                currentInput = "";
             }
             else
             {
                 currentInput += c;
                 Debug.Log("Libre input: " + c);
+                wordManager.CheckInput(currentInput);
             }
         }
     }
