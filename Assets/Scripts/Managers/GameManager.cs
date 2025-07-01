@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     // Tiempo de inicio del juego
     public float gameStartTime;
     // Caracteres escritos
-    public int wordsTyped;
+    public int wordsCompleted;
     // Enemigos eliminados
     public int enemiesKilled;
     public GameOverPanel gameOverPanel;
@@ -63,11 +63,9 @@ public class GameManager : MonoBehaviour
 
     public void ShowGameOver()
     {
-        Debug.Log("gameOverPanel: " + gameOverPanel);
         if (gameOverPanel != null)
         {
             gameOverPanel.ShowPanel();
-            Debug.Log(" Mostrar panel del Game Over!");
         }
         GameOver();
     }
@@ -77,7 +75,6 @@ public class GameManager : MonoBehaviour
         if (isGameOver) return; // Evitar ejecutar Game Over multiples veces
 
         isGameOver = true; // Marcar el juego como terminado
-        Debug.Log("Game Over!");
 
         // Detener el tiempo del juego
         Time.timeScale = 0;
@@ -105,8 +102,8 @@ public class GameManager : MonoBehaviour
         
         // Restablecer el tiempo del juego
         gameStartTime = Time.time;      
-        // Caracteres escritos
-        wordsTyped = 0;
+        // Palabras completadas
+        wordsCompleted = 0;
         // Enemigos eliminados
         enemiesKilled = 0;  
 
@@ -115,9 +112,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void AddWordTyped()
+    public void AddWordCompleted()
     {
-        this.wordsTyped++;
+        this.wordsCompleted++;
     }
 
     public void AddEnemyKilled()

@@ -5,12 +5,13 @@ public class GameOverPanel : MonoBehaviour
 {
     public Text timePlayedText;
     public Text wordsPerSecondText;
+    public Text wordsCompletedText;
     public Text enemiesKilledText;
     public Text finalScoreText;
 
     private GameManager gameManager;
     private float finalTime;
-    private int finalWordsTyped;
+    private int finalWordsCompleted;
     private int finalEnemiesKilled;
     private int finalScore;
 
@@ -25,7 +26,7 @@ public class GameOverPanel : MonoBehaviour
         gameObject.SetActive(true);
         // Guardar los valores finales
         finalTime = Time.time - gameManager.gameStartTime;
-        finalWordsTyped = gameManager.wordsTyped;
+        finalWordsCompleted = gameManager.wordsCompleted;
         finalEnemiesKilled = gameManager.enemiesKilled;
         finalScore = gameManager.score;
         UpdateStatistics();
@@ -33,7 +34,7 @@ public class GameOverPanel : MonoBehaviour
 
     private void UpdateStatistics()
     {
-        float wordsPerSecond = finalWordsTyped / finalTime;
+        float wordsPerSecond = finalWordsCompleted / finalTime;
 
         timePlayedText.text = $"Tiempo jugado: {finalTime:F2} segundos";
         // Si llega al minuto
@@ -46,7 +47,8 @@ public class GameOverPanel : MonoBehaviour
         {
             timePlayedText.text = $"Tiempo jugado: {finalTime / 3600:F2} horas";
         }
-        wordsPerSecondText.text = $"Palabras por segundo: {wordsPerSecond:F2}";
+        wordsCompletedText.text = $"Palabras completadas: {finalWordsCompleted}";
+        wordsPerSecondText.text = $"Palabras completadas por segundo: {wordsPerSecond:F2}";
         enemiesKilledText.text = $"Enemigos eliminados: {finalEnemiesKilled}";
         finalScoreText.text = $"Puntuación final: {finalScore}";
     }

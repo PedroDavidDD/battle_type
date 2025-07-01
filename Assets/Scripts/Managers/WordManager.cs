@@ -63,7 +63,7 @@ public class WordManager : MonoBehaviour
         // Si no existe en el diccionario, se inicializa en 0
         int processedCount = processedCharacters.ContainsKey(selectedWord) 
             ? processedCharacters[selectedWord] : 0;
-        
+
         // Recorre los caracteres desde donde se quedó la última vez
         for (int i = processedCount; i < input.Length && i < selectedWord.Length; i++)
         {
@@ -83,10 +83,15 @@ public class WordManager : MonoBehaviour
         {
             // Disparar una bala por cada caracter correcto
             ShootBullet(enemy.transform);
-            // Incrementar el contador de palabras escritas
-            gameManager.AddWordTyped();
             // Actualizar el progreso de la palabra en el diccionario
             processedCharacters[selectedWord] += matchCount;
+
+            // Verificar si la palabra está completa
+            if (processedCharacters[selectedWord] >= selectedWord.Length)
+            {
+                // Solo incrementar el contador cuando la palabra está completa
+                gameManager.AddWordCompleted();
+            }
         }
 
         Debug.Log($"Caracteres coincidentes: {matchCount}");
