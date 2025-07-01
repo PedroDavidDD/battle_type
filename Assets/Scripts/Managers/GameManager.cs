@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,15 @@ public class GameManager : MonoBehaviour
     public int lives = 100;
 
     private bool isGameOver = false; // Indica si el juego ha terminado
+
+    // Estadisticas del juego (tiempo, palabras, enemigos)
+    // Tiempo de inicio del juego
+    public float gameStartTime;
+    // Caracteres escritos
+    public int wordsTyped;
+    // Enemigos eliminados
+    public int enemiesKilled;
+    public GameOverPanel gameOverPanel;
 
     private void Awake()
     {
@@ -19,10 +29,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        gameStartTime = Time.time;
     }
+
     private void Start()
     {
-        lives = 30;
+        lives = 5;
+        gameOverPanel = GameObject.Find("GameOverPanel").GetComponent<GameOverPanel>();
     }
 
     public void AddScore(int points)
@@ -42,8 +56,20 @@ public class GameManager : MonoBehaviour
 
         if (lives <= 0)
         {
-            GameOver();
+            // Mostrar el panel del Game Over
+            ShowGameOver();
         }
+    }
+
+    public void ShowGameOver()
+    {
+        Debug.Log("gameOverPanel: " + gameOverPanel);
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.ShowPanel();
+            Debug.Log(" Mostrar panel del Game Over!");
+        }
+        GameOver();
     }
 
     private void GameOver()
@@ -55,9 +81,16 @@ public class GameManager : MonoBehaviour
 
         // Detener el tiempo del juego
         Time.timeScale = 0;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+    }
 
-        // Aqui puedes cargar una escena de Game Over o mostrar un panel de Game Over
-        // Ejemplo: SceneManager.LoadScene("GameOverScene");
+    public void HideGameOver()
+    {
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.gameObject.SetActive(false);
+        }
+        Time.timeScale = 1;
     }
 
     public void RestartGame()
@@ -69,9 +102,26 @@ public class GameManager : MonoBehaviour
         score = 0;
         lives = 10;
         isGameOver = false;
+        
+        // Restablecer el tiempo del juego
+        gameStartTime = Time.time;      
+        // Caracteres escritos
+        wordsTyped = 0;
+        // Enemigos eliminados
+        enemiesKilled = 0;  
 
         Debug.Log("Juego reiniciado!");
         // Opcionalmente, recargar la escena actual o realizar otras acciones
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void AddWordTyped()
+    {
+        this.wordsTyped++;
+    }
+
+    public void AddEnemyKilled()
+    {
+        this.enemiesKilled++;
     }
 }

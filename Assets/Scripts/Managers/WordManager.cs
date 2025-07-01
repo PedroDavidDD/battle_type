@@ -9,12 +9,18 @@ public class WordManager : MonoBehaviour
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform shootPoint;
+    private GameManager gameManager;
     
     // Rastrea el progreso por cada palabra que se registra
     private Dictionary<string, int> processedCharacters = new Dictionary<string, int>();
     // Palabra seleccionada
     private string selectedWord = "";
-
+    
+    private void Start()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+    
     public void RegisterEnemy(Enemy enemy)
     {
         activeEnemies.Add(enemy);
@@ -42,16 +48,26 @@ public class WordManager : MonoBehaviour
         }
         LogDictionaryContents();
     }
+    /// <summary>
+    /// Compara los caracteres ingresados por el jugador con la palabra del enemigo actual.
+    /// Dispara balas por cada caracter coincidente y actualiza el progreso de la palabra.
+    /// </summary>
+    /// <param name="input">La entrada del jugador (lo que est√° escribiendo)</param>
+    /// <param name="enemy">El enemigo al que se est√° comparando la palabra</param>
     private void ForCharacters(string input, Enemy enemy)
     {
+        // Contador de caracteres que coinciden
         int matchCount = 0;
 
-        // Consulta el valor de una clave sin modificar el diccionario 
+        // Obtener el progreso actual de la palabra
+        // Si no existe en el diccionario, se inicializa en 0
         int processedCount = processedCharacters.ContainsKey(selectedWord) 
             ? processedCharacters[selectedWord] : 0;
-
+        
+        // Recorre los caracteres desde donde se qued√≥ la √∫ltima vez
         for (int i = processedCount; i < input.Length && i < selectedWord.Length; i++)
         {
+            // Si el caracter coincide con la palabra del enemigo
             if (input[i] == selectedWord[i])
             {
                 matchCount++;
@@ -61,19 +77,22 @@ public class WordManager : MonoBehaviour
                 break;
             }
         }
-        // Disparar una bala por cada car·cter coincidente
+
+        // Si hay caracteres que coinciden
         if (matchCount > 0)
         {
+            // Disparar una bala por cada caracter correcto
             ShootBullet(enemy.transform);
-            //enemy.ReduceLive(matchCount);
-            // Actualizar el progreso de la palabra seleccionada
+            // Incrementar el contador de palabras escritas
+            gameManager.AddWordTyped();
+            // Actualizar el progreso de la palabra en el diccionario
             processedCharacters[selectedWord] += matchCount;
         }
-        Debug.Log("total matchCount " + matchCount);
-        Debug.Log("total selectedWord " + selectedWord);
 
+        Debug.Log($"Caracteres coincidentes: {matchCount}");
+        Debug.Log($"Palabra objetivo: {selectedWord}");
     }
-    // Dispara una bala en una posiciÛn especÌfica.
+    // Dispara una bala en una posicion especifica.
     private void ShootBullet(Transform target)
     {
         if (bulletPrefab == null || shootPoint == null)
@@ -93,7 +112,7 @@ public class WordManager : MonoBehaviour
             Debug.Log("ballScript actualizado el Target" + ballScript);
         }
     }
-
+    // Compara la entrada con la palabra seleccionada
     private void ForWord(string input, string enemyWord)
     {
         if (input == enemyWord)
@@ -111,10 +130,10 @@ public class WordManager : MonoBehaviour
 
     private void EnemyPoints()
     {
-        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         int points = 10;
         gameManager.AddScore(points);
     }
+
     private void LogDictionaryContents()
     {
         Debug.Log("Estado actual del diccionario 'processedCharacters':");

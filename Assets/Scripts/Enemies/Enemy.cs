@@ -5,9 +5,10 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private string word; // Palabra asignada al 
+    [SerializeField] private string word; // Palabra asignada al enemigo
     public float speed = .3f; // Velocidad de movimiento
     private WordManager wordManager;
+    private GameManager gameManager;
     [SerializeField] private int enemyLive = 1;
 
     public int EnemyLive { get => enemyLive; set => enemyLive = value; }
@@ -15,8 +16,9 @@ public class Enemy : MonoBehaviour
     [System.Obsolete]
     private void Start()
     {
-        // Obtener la referencia al WordManager
+        // Obtener referencias
         wordManager = FindObjectOfType<WordManager>();
+        gameManager = FindObjectOfType<GameManager>();
 
         if (wordManager != null)
         {
@@ -55,6 +57,8 @@ public class Enemy : MonoBehaviour
     }
     public void ReduceLive(int amount = 1)
     {
+        if (gameManager == null) return;
+
         this.enemyLive -= amount;
         Debug.Log("vida actual pero reducido del enemigo - Enemy: " + enemyLive);
         if (this.enemyLive <= 0)
@@ -63,14 +67,16 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             EnemyPoints(5);
 
+            // Incrementar el contador de enemigos eliminados
+            gameManager.AddEnemyKilled();
+
             InputHandler inputHandler = GameObject.Find("InputHandler").GetComponent<InputHandler>();
             inputHandler.SetCurrentInput("");
         }
     }
     private void EnemyPoints(int points = 10)
-    {
-        GameManager gameManager = GameObject.Find("GameManager")
-            .GetComponent<GameManager>();
+    {   
+        if (gameManager == null) return;
         gameManager.AddScore(points);
     }
 }
