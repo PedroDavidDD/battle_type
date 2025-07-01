@@ -10,6 +10,7 @@ public class WordManager : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform shootPoint;
     private GameManager gameManager;
+    [SerializeField] private PlayerSoundController playerSoundController;
     
     // Rastrea el progreso por cada palabra que se registra
     private Dictionary<string, int> processedCharacters = new Dictionary<string, int>();
@@ -132,6 +133,8 @@ public class WordManager : MonoBehaviour
             ballScript.SetTarget(target);
             Debug.Log("ballScript actualizado el Target" + ballScript);
         }
+        // Reproduce el sonido de disparo
+        playerSoundController.PlayDisparoSound();
     }
     // Compara la entrada con la palabra seleccionada
     private void ForWord(string input, string enemyWord)
