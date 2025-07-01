@@ -101,15 +101,22 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
         
         // Restablecer el tiempo del juego
-        gameStartTime = Time.time;      
+        gameStartTime = 0f;      
         // Palabras completadas
         wordsCompleted = 0;
         // Enemigos eliminados
         enemiesKilled = 0;  
 
         Debug.Log("Juego reiniciado!");
-        // Opcionalmente, recargar la escena actual o realizar otras acciones
+        // Recargar la escena actual
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+        // Obtener referencia al WordManager y inicializar los enemigos
+        WordManager wordManager = FindObjectOfType<WordManager>();
+        if (wordManager != null)
+        {
+            wordManager.InitializeEnemies();
+        }
     }
 
     public void AddWordCompleted()

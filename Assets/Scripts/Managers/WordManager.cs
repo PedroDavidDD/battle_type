@@ -19,6 +19,22 @@ public class WordManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        InitializeEnemies();
+    }
+
+    // Método para inicializar los enemigos
+    public void InitializeEnemies()
+    {
+        // Limpiar la lista de enemigos
+        activeEnemies.Clear();
+        processedCharacters.Clear();
+
+        // Buscar y registrar todos los enemigos en la escena
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            RegisterEnemy(enemy);
+        }
     }
     
     public void RegisterEnemy(Enemy enemy)
