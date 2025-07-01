@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        lives = 110;
+        lives = 30;
     }
 
     public void AddScore(int points)
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        if (isGameOver) return; // Evitar ejecutar Game Over múltiples veces
+        if (isGameOver) return; // Evitar ejecutar Game Over multiples veces
 
         isGameOver = true; // Marcar el juego como terminado
         Debug.Log("Game Over!");
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         // Detener el tiempo del juego
         Time.timeScale = 0;
 
-        // Aquí puedes cargar una escena de Game Over o mostrar un panel de Game Over
+        // Aqui puedes cargar una escena de Game Over o mostrar un panel de Game Over
         // Ejemplo: SceneManager.LoadScene("GameOverScene");
     }
 
