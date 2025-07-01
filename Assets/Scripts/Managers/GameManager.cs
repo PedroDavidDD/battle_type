@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         lives = 5;
-        gameOverPanel = GameObject.Find("GameOverPanel").GetComponent<GameOverPanel>();
+        gameOverPanel = gameOverPanel.GetComponent<GameOverPanel>();
     }
 
     public void AddScore(int points)

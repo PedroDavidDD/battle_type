@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyRepeat : MonoBehaviour
 {
-    // Posición específica a la que se moverán los enemigos cuando toquen este muro
+    // Posiciï¿½n especï¿½fica a la que se moverï¿½n los enemigos cuando toquen este muro
     public GameObject spawnerPosition;
 
     private void Start()
@@ -10,10 +10,10 @@ public class EnemyRepeat : MonoBehaviour
         // Buscar el GameObject "EnemySpawner" en la escena
         spawnerPosition = GameObject.Find("EnemySpawner");
 
-        // Verificar si se encontró el GameObject
+        // Verificar si se encontrï¿½ el GameObject
         if (spawnerPosition == null)
         {
-            Debug.LogError("Error: No se encontró el GameObject 'EnemySpawner'.");
+            Debug.LogError("Error: No se encontro el GameObject 'EnemySpawner'.");
         }
     }
 
@@ -33,10 +33,10 @@ public class EnemyRepeat : MonoBehaviour
             // Verificar si el script EnemySpawner existe
             if (enemySpawner != null && gameManager != null)
             {
-                // Llamar al método GetPositionRange() desde el script EnemySpawner
+                // Llamar al mï¿½todo GetPositionRange() desde el script EnemySpawner
                 Vector3 randomPosition = enemySpawner.GetPositionRange();
 
-                // Mover al enemigo a la posición aleatoria generada
+                // Mover al enemigo a la posiciï¿½n aleatoria generada
                 enemyTransform.position = randomPosition;
 
 
