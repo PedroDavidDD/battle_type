@@ -143,4 +143,9 @@ public class GameManager : MonoBehaviour
             AddLevel();
         }
     }
+
+    public float GetGameTime()
+    {
+        return Time.time - gameStartTime;
+    }
 }

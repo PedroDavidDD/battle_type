@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     public Text levelText;
     public Text activeWordsText;
     public Text inputText;
+    public Text timeText;
+
     private void Update()
     {
         // Obtener la entrada actual del jugador
@@ -19,8 +21,17 @@ public class UIManager : MonoBehaviour
 
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         livesText.text = "" + gameManager.lives.ToString();
-        scoreText.text = "Score: " + gameManager.score.ToString();
-        levelText.text = "Level: " + gameManager.currentLevel.ToString();
+        scoreText.text = "Puntaje: " + gameManager.score.ToString();
+        levelText.text = "Nivel: " + gameManager.currentLevel.ToString();
+        
+        // Obtener el tiempo actual del juego
+        float gameTime = gameManager.GetGameTime();
+        
+        // Formatear el tiempo como minutos:segundos
+        int minutes = Mathf.FloorToInt(gameTime / 60);
+        int seconds = Mathf.FloorToInt(gameTime % 60);
+        
+        timeText.text = $"Tiempo: {minutes:D2}:{seconds:D2}";
     }
 
     private void CheckCharacterMatch(string currentInputText)
