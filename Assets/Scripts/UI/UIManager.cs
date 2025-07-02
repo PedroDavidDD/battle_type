@@ -5,6 +5,7 @@ public class UIManager : MonoBehaviour
 {
     public Text scoreText;
     public Text livesText;
+    public Text levelText;
     public Text activeWordsText;
     public Text inputText;
     private void Update()
@@ -19,7 +20,7 @@ public class UIManager : MonoBehaviour
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         livesText.text = "" + gameManager.lives.ToString();
         scoreText.text = "Score: " + gameManager.score.ToString();
-
+        levelText.text = "Level: " + gameManager.currentLevel.ToString();
     }
 
     private void CheckCharacterMatch(string currentInputText)

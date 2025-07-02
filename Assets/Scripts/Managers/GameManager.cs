@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     // Enemigos eliminados
     public int enemiesKilled;
     public GameOverPanel gameOverPanel;
+    
+    public int currentLevel = 0;
+    public int enemiesPerLevel = 5;
 
     private void Awake()
     {
@@ -46,6 +49,12 @@ public class GameManager : MonoBehaviour
         score += points;
         Debug.Log("Score: " + score);
     }
+
+    public void AddLevel()
+    {
+        currentLevel++;
+        Debug.Log("Level: " + currentLevel);
+    }   
 
     public void LoseLife()
     {
@@ -99,6 +108,7 @@ public class GameManager : MonoBehaviour
         score = 0;
         lives = 10;
         isGameOver = false;
+        currentLevel = 0;
         
         // Restablecer el tiempo del juego
         gameStartTime = 0f;      
@@ -127,5 +137,10 @@ public class GameManager : MonoBehaviour
     public void AddEnemyKilled()
     {
         this.enemiesKilled++;
+
+        if (this.enemiesKilled % enemiesPerLevel == 0)
+        {
+            AddLevel();
+        }
     }
 }
