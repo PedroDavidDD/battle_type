@@ -612,7 +612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 161477116}
   sonidoDisparo: {fileID: 8300000, guid: 4d988f8ab976a404f991711134a05614, type: 3}
-  sonidoMuerteEnemigo: {fileID: 8300000, guid: b1b050e31e9d8fe4bb8059231f7fc02e, type: 3}
+  sonidoMuerteJugador: {fileID: 8300000, guid: 461232ddfec7eae46a7b25f2b92af993, type: 3}
 --- !u!1 &193925188
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +765,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 193925192}
   currentLevel: 0
   enemiesPerLevel: 5
+  txtInput: {fileID: 362417750}
 --- !u!1 &304490341
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,7 +894,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 304490342}
-  sonidoMuerteEnemigo: {fileID: 8300000, guid: b1b050e31e9d8fe4bb8059231f7fc02e, type: 3}
+  sonidoGolpeEnemigo: {fileID: 8300000, guid: b1b050e31e9d8fe4bb8059231f7fc02e, type: 3}
+  sonidoMuerteEnemigo: {fileID: 8300000, guid: 108de2ffa546a4042b3fe1a36dcfda6b, type: 3}
 --- !u!4 &304490344
 Transform:
   m_ObjectHideFlags: 0

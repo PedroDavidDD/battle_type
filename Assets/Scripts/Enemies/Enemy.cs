@@ -67,7 +67,9 @@ public class Enemy : MonoBehaviour
         if (gameManager == null) return;
 
         this.enemyLive -= amount;
-        Debug.Log("vida actual pero reducido del enemigo - Enemy: " + enemyLive);
+        
+        enemySoundController.PlayGolpeEnemigoSound();
+        
         if (this.enemyLive <= 0)
         {
             Debug.Log("El enemigo ha sido derrotado.");

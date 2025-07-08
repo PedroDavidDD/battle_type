@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     public int currentLevel = 0;
     public int enemiesPerLevel = 5;
 
+    public GameObject txtInput;
+    public PlayerSoundController playerSoundController;
+
     private void Awake()
     {
         if (Instance == null)
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour
     {
         lives = 5;
         gameOverPanel = gameOverPanel.GetComponent<GameOverPanel>();
+        playerSoundController = GameObject.Find("Player").GetComponent<PlayerSoundController>();
     }
 
     public void AddScore(int points)
@@ -67,6 +71,8 @@ public class GameManager : MonoBehaviour
         {
             // Mostrar el panel del Game Over
             ShowGameOver();
+            
+            playerSoundController.PlayMuerteJugadorSound();
         }
     }
 
@@ -76,7 +82,13 @@ public class GameManager : MonoBehaviour
         {
             gameOverPanel.ShowPanel();
         }
+        
         GameOver();
+        
+        if (txtInput != null)
+        {
+            txtInput.SetActive(false);
+        }
     }
 
     private void GameOver()
@@ -96,7 +108,13 @@ public class GameManager : MonoBehaviour
         {
             gameOverPanel.gameObject.SetActive(false);
         }
+
         Time.timeScale = 1;
+
+        if (txtInput != null)
+        {
+            txtInput.SetActive(true);
+        }
     }
 
     public void RestartGame()
