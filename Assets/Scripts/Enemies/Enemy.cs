@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     private WordManager wordManager;
     private GameManager gameManager;
     [SerializeField] private int enemyLive = 1;
+    
+    [SerializeField] private EnemySoundController enemySoundController;
 
     public int EnemyLive { get => enemyLive; set => enemyLive = value; }
 
@@ -19,6 +21,11 @@ public class Enemy : MonoBehaviour
         // Obtener referencias
         wordManager = FindObjectOfType<WordManager>();
         gameManager = FindObjectOfType<GameManager>();
+
+        if (enemySoundController == null)
+        {
+            enemySoundController = FindObjectOfType<EnemySoundController>();
+        }
 
         if (wordManager != null)
         {
@@ -67,6 +74,8 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             EnemyPoints(5);
 
+            enemySoundController.PlayMuerteEnemigoSound();
+            
             // Incrementar el contador de enemigos eliminados
             gameManager.AddEnemyKilled();
 

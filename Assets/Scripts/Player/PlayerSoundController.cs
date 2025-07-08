@@ -14,5 +14,4 @@ public class PlayerSoundController : MonoBehaviour
             audioSource.PlayOneShot(sonidoDisparo);
         }
     }
-
 }
