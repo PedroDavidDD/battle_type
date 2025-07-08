@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
                 continue;
             }
 
-            // Manejar el caso cuando la entrada del jugador est� vac�a
+            // Manejar el caso cuando la entrada del jugador esta vacia
             if (string.IsNullOrEmpty(currentInputText))
             {
                 // Restaurar el color del SpriteRenderer del hijo "Body" a blanco
