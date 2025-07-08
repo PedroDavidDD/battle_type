@@ -2143,6 +2143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 633386639}
+  txtInput: {fileID: 362417750}
 --- !u!1 &694736909
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class WordManager : MonoBehaviour
     private Dictionary<string, int> processedCharacters = new Dictionary<string, int>();
     // Palabra seleccionada
     private string selectedWord = "";
+    public ButtonController buttonController;
     
     private void Start()
     {
@@ -49,6 +50,8 @@ public class WordManager : MonoBehaviour
     }
     public void CheckInput(string currentInput)
     {
+        if (buttonController.isPaused) return;
+
         foreach (var enemy in activeEnemies)
         {
             selectedWord = enemy.GetEnemyWord();

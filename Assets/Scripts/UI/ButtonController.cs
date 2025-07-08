@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
-    private bool isPaused = false;
+    public bool isPaused = false;
     public GameObject pausePanel;
+    public GameObject txtInput;
 
     private void Start()
     {
@@ -23,6 +24,10 @@ public class ButtonController : MonoBehaviour
             {
                 pausePanel.SetActive(true);
             }
+            if (txtInput != null)
+            {
+                txtInput.SetActive(false);
+            }
         }
         else
         {
@@ -31,6 +36,10 @@ public class ButtonController : MonoBehaviour
             if (pausePanel != null)
             {
                 pausePanel.SetActive(false);
+            }
+            if (txtInput != null)
+            {
+                txtInput.SetActive(true);
             }
         }
     }
