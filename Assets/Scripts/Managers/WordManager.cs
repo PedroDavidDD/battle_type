@@ -50,7 +50,9 @@ public class WordManager : MonoBehaviour
     }
     public void CheckInput(string currentInput)
     {
-        if (buttonController.isPaused) return;
+        if (buttonController){
+            if (buttonController.isPaused) return;
+        }
 
         foreach (var enemy in activeEnemies)
         {
