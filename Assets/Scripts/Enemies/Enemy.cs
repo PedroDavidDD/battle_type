@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
         wordManager = FindObjectOfType<WordManager>();
         gameManager = FindObjectOfType<GameManager>();
 
+        // Obtener el componente EnemySoundController
         if (enemySoundController == null)
         {
             enemySoundController = FindObjectOfType<EnemySoundController>();
@@ -29,7 +30,8 @@ public class Enemy : MonoBehaviour
 
         if (wordManager != null)
         {
-            wordManager.RegisterEnemy(this); // Registrar este enemigo en el WordManager
+            // Registrar este enemigo en el WordManager
+            wordManager.RegisterEnemy(this); 
             Debug.Log("Enemigo registrado en WordManager.");
         }
         else
