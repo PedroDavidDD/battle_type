@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
         // Cargar palabras desde el archivo de texto
         if (wordListFile != null)
         {
-            // Dividir el texto por saltos de línea y eliminar entradas vacías
+            // Dividir el texto por saltos de linea y eliminar entradas vacias
             wordList = wordListFile.text.Split(
                 new[] { '\r', '\n' },
                 System.StringSplitOptions.RemoveEmptyEntries
@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            Debug.LogError("No se asignó el archivo de palabras.");
+            Debug.LogError("No se asigno el archivo de palabras.");
         }
         // Inicializar la cola con las palabras mezcladas
         ShuffleAndInitializeWords();
@@ -79,10 +79,10 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            Debug.LogError("No se encontró el objeto hijo 'body' en el prefab del enemigo.");
+            Debug.LogError("No se encontro el objeto hijo 'body' en el prefab del enemigo.");
         }
 
-        // Asignar la palabra al enemigo (código existente)
+        // Asignar la palabra al enemigo (codigo existente)
         Enemy enemyCustom = enemy.GetComponent<Enemy>();
         if (enemyCustom != null)
         {
@@ -96,7 +96,7 @@ public class EnemySpawner : MonoBehaviour
         float rangeX = transform.localScale.x * spawnRangeMultiplier;
         float rangeY = transform.localScale.y * spawnRangeMultiplier;
 
-        // Generar una posición aleatoria dentro del rango
+        // Generar una posicion aleatoria dentro del rango
         Vector3 randomPosition = new Vector3(
             transform.position.x + Random.Range(-rangeX, rangeX),
             transform.position.y + Random.Range(-rangeY, rangeY),
