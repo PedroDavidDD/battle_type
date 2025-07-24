@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Error: WordManager no encontrado.");
         }
-
+        // Asignar la vida del enemigo
         EnemyLive = GetEnemyWord().Length;
     }
     private void Update()
