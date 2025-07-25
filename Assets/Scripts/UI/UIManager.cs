@@ -33,7 +33,8 @@ public class UIManager : MonoBehaviour
         
         timeText.text = $"Tiempo: {minutes:D2}:{seconds:D2}";
     }
-
+ 
+    // Comprobar si la entrada del jugador coincide con las palabras de los enemigos para actualizar el color del enemigo y las palabras activas en el UI
     private void CheckCharacterMatch(string currentInputText)
     {
         // Iterar sobre todos los enemigos activos

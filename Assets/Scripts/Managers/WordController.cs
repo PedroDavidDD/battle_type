@@ -22,15 +22,4 @@ public class WordController : MonoBehaviour
         liveEnemy.maxValue = enemy.GetEnemyWord().Length;
         liveEnemy.value = enemy.EnemyLive;
     }
-
-    public void CheckWord(string input)
-    {/*
-        if (input == currentWord)
-        {
-            //GameManager.Instance.AddScore(10); // Aumentar puntuación
-            Destroy(gameObject); // Destruir el enemigo
-        }*/
-    }   // Crear el texto para mostrar la palabra
-   
-
 }
