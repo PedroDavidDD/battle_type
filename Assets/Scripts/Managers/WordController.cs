@@ -7,10 +7,13 @@ public class WordController : MonoBehaviour
 
     [SerializeField] private Text enemyTextWord;
     [SerializeField] private Slider liveEnemy;
+
     private void Awake()
     {
         enemy = GetComponent<Enemy>();
     }
+    
+    // Actualiza el texto de la palabra y la barra de vida del enemigo
     private void Update()
     {
         if (enemy == null) return;

@@ -2142,6 +2142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978967ac9f62acb4e9a681d2671baa81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
   pausePanel: {fileID: 633386639}
   txtInput: {fileID: 362417750}
 --- !u!1 &694736909
@@ -2472,6 +2473,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7587069610961297503, guid: 1d2fedde1228ee943a782fa5cce93710, type: 3}
   shootPoint: {fileID: 1887049377}
   playerSoundController: {fileID: 161477117}
+  buttonController: {fileID: 674410290}
 --- !u!1 &1120973064
 GameObject:
   m_ObjectHideFlags: 0
