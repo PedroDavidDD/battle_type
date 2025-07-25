@@ -264,7 +264,6 @@ GameObject:
   - component: {fileID: 38450150864920848}
   - component: {fileID: 5534559187937727833}
   - component: {fileID: 6195401068140630652}
-  - component: {fileID: 6542840656810265908}
   - component: {fileID: 8446279892577206503}
   - component: {fileID: 2365221158323615759}
   m_Layer: 0
@@ -307,6 +306,9 @@ MonoBehaviour:
   word: 
   speed: 0.5
   enemyLive: 1
+  enemySoundController: {fileID: 0}
+  enemyTextWord: {fileID: 3760338378807069365}
+  liveEnemy: {fileID: 3577292933423992477}
 --- !u!61 &6195401068140630652
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -353,21 +355,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6542840656810265908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1887331739875060958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77c9e8c6e5da5c3489c52d26b5692696, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 5534559187937727833}
-  enemyTextWord: {fileID: 3760338378807069365}
-  liveEnemy: {fileID: 3577292933423992477}
 --- !u!50 &8446279892577206503
 Rigidbody2D:
   serializedVersion: 5

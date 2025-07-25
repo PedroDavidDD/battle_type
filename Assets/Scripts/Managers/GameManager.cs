@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         
         // Obtener referencia al WordManager y inicializar los enemigos
-        WordManager wordManager = FindObjectOfType<WordManager>();
+        WordManager wordManager = GameObject.FindFirstObjectByType<WordManager>();
         if (wordManager != null)
         {
             wordManager.InitializeEnemies();

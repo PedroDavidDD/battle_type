@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Windows;
 using static UnityEngine.EventSystems.EventTrigger;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -15,17 +16,19 @@ public class Enemy : MonoBehaviour
 
     public int EnemyLive { get => enemyLive; set => enemyLive = value; }
 
+    [SerializeField] private Text enemyTextWord;
+    [SerializeField] private Slider liveEnemy;
+
     [System.Obsolete]
     private void Start()
     {
         // Obtener referencias
-        wordManager = FindObjectOfType<WordManager>();
-        gameManager = FindObjectOfType<GameManager>();
+        wordManager = GameObject.FindFirstObjectByType<WordManager>();
+        gameManager = GameObject.FindFirstObjectByType<GameManager>();
 
-        // Obtener el componente EnemySoundController
         if (enemySoundController == null)
         {
-            enemySoundController = FindObjectOfType<EnemySoundController>();
+            enemySoundController = GameObject.FindFirstObjectByType<EnemySoundController>();
         }
 
         if (wordManager != null)
@@ -37,6 +40,21 @@ public class Enemy : MonoBehaviour
         else
         {
             Debug.LogError("Error: WordManager no encontrado.");
+        }
+
+        if (enemyTextWord != null && liveEnemy != null)
+        {
+            // Actualizar el texto de la palabra y la barra de vida del enemigo
+
+            enemyTextWord.text = GetEnemyWord();
+
+            liveEnemy.maxValue = GetEnemyWord().Length;
+            liveEnemy.value = EnemyLive;
+            Debug.Log("Enemigo registrado en EnemyTextWord y liveEnemy.");
+        }
+        else
+        {
+            Debug.LogError("Error: EnemyTextWord o liveEnemy no encontrados.");
         }
         // Asignar la vida del enemigo
         EnemyLive = GetEnemyWord().Length;

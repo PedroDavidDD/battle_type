@@ -33,7 +33,7 @@ public class WordManager : MonoBehaviour
         processedCharacters.Clear();
 
         // Buscar y registrar todos los enemigos en la escena
-        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        Enemy[] enemies = GameObject.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         foreach (Enemy enemy in enemies)
         {
             RegisterEnemy(enemy);
