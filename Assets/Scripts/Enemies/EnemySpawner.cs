@@ -1,53 +1,116 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using System;
+
+[System.Serializable]
+public class WordItem
+{
+    public string word;
+    public string tag;
+}
 
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab; // Prefab del enemigo
     public Sprite[] enemySprites; // Array de sprites disponibles
     public float spawnInterval = 4f; // Intervalo entre spawns
-    public TextAsset wordListFile;
-    private string[] wordList;
     public float spawnRangeMultiplier = 1f; // Multiplicador para ajustar el rango de spawn
 
-    private Queue<string> remainingWords; // Cola para manejar las palabras disponibles
+    public TextAsset wordListFile;
+    private WordItem[] wordList;
+    private Queue<WordItem> remainingWords;
 
     private void Start()
     {
-        // Cargar palabras desde el archivo de texto
-        if (wordListFile != null)
+        // Verificar si el ButtonsManager existe en la escena
+        if (ButtonsManager.Instance == null)
         {
-            // Dividir el texto por saltos de linea y eliminar entradas vacias
-            wordList = wordListFile.text.Split(
-                new[] { '\r', '\n' },
-                System.StringSplitOptions.RemoveEmptyEntries
-            );
+            Debug.LogError("No se encontró el ButtonsManager en la escena");
+            return;
+        }
+
+        // Obtener la categoría seleccionada
+        string selectedCategory = ButtonsManager.Instance.txtCategory?.ToLower() ?? "programacion";
+        
+        // Cargar palabras desde el archivo de texto
+        if (wordListFile != null && !string.IsNullOrEmpty(wordListFile.text))
+        {
+            try
+            {
+                // Deserializar el JSON directamente ya que el archivo ya tiene el formato correcto
+                var wrapper = JsonUtility.FromJson<WordListWrapper>(wordListFile.text);
+                if (wrapper != null && wrapper.items != null)
+                {
+                    // Filtrar palabras por la categoría seleccionada
+                    wordList = wrapper.items
+                        .Where(item => item.tag.ToLower() == selectedCategory)
+                        .ToArray();
+                        
+                    Debug.Log($"Categoría seleccionada: {selectedCategory}");
+                    Debug.Log($"Palabras encontradas: {wordList.Length}");
+                    
+                    if (wordList.Length == 0)
+                    {
+                        Debug.LogError($"No se encontraron palabras para la categoría: {selectedCategory}");
+                        return;
+                    }
+                    // Inicializar la cola con las palabras mezcladas
+                    if (ShuffleAndInitializeWords())
+                    {
+                        // Comenzar a generar enemigos solo si la inicialización fue exitosa
+                        InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
+                        return;
+                    }
+                }
+                else
+                {
+                    Debug.LogError("El archivo JSON no tiene el formato correcto o está vacío.");
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Error al parsear el archivo JSON: {e.Message}");
+            }
         }
         else
         {
-            Debug.LogError("No se asigno el archivo de palabras.");
+            Debug.LogError("No se asigno el archivo de palabras o está vacío.");
         }
-        // Inicializar la cola con las palabras mezcladas
-        ShuffleAndInitializeWords();
 
-        // Comenzar a generar enemigos
-        InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
+        // Si llegamos aquí, algo salió mal
+        wordList = new WordItem[0];
+        // Asegurarse de que no se intente generar enemigos
+        CancelInvoke("SpawnEnemy");
     }
 
     /// <summary>
     /// Mezcla las palabras y las prepara para ser usadas.
     /// </summary>
-    private void ShuffleAndInitializeWords()
+    private bool ShuffleAndInitializeWords()
     {
-        List<string> shuffledWords = new List<string>(wordList);
+        if (wordList == null || wordList.Length == 0)
+        {
+            Debug.LogError("No hay palabras para mezclar.");
+            return false;
+        }
+
+        List<WordItem> shuffledWords = new List<WordItem>(wordList);
         for (int i = 0; i < shuffledWords.Count; i++)
         {
-            int randomIndex = Random.Range(i, shuffledWords.Count);
-            string temp = shuffledWords[i];
+            int randomIndex = UnityEngine.Random.Range(i, shuffledWords.Count);
+            WordItem temp = shuffledWords[i];
             shuffledWords[i] = shuffledWords[randomIndex];
             shuffledWords[randomIndex] = temp;
         }
-        remainingWords = new Queue<string>(shuffledWords);
+        if (shuffledWords == null || shuffledWords.Count == 0)
+        {
+            Debug.LogError("No se pudieron mezclar las palabras.");
+            return false;
+        }
+
+        remainingWords = new Queue<WordItem>(shuffledWords);
+        return true;
     }
 
     private void SpawnEnemy()
@@ -58,7 +121,7 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        string nextWord = remainingWords.Dequeue();
+        WordItem nextWord = remainingWords.Dequeue();
         Vector3 randomPosition = GetPositionRange();
         GameObject enemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
 
@@ -68,9 +131,9 @@ public class EnemySpawner : MonoBehaviour
         {
             SpriteRenderer bodyRenderer = body.GetComponent<SpriteRenderer>();
             if (bodyRenderer != null && enemySprites.Length > 0)
-            {
+            {   
                 // Asignar un sprite aleatorio al cuerpo
-                bodyRenderer.sprite = enemySprites[Random.Range(0, enemySprites.Length)];
+                bodyRenderer.sprite = enemySprites[UnityEngine.Random.Range(0, enemySprites.Length)];
             }
             else
             {
@@ -82,11 +145,12 @@ public class EnemySpawner : MonoBehaviour
             Debug.LogError("No se encontro el objeto hijo 'body' en el prefab del enemigo.");
         }
 
-        // Asignar la palabra al enemigo (codigo existente)
+        // Asignar la palabra al enemigo
         Enemy enemyCustom = enemy.GetComponent<Enemy>();
         if (enemyCustom != null)
         {
-            enemyCustom.SetEnemyWord(nextWord);
+            enemyCustom.SetEnemyWord(nextWord.word);
+            // Aquí podrías usar nextWord.tag si necesitas la etiqueta para algo
         }
     }
 
@@ -98,8 +162,8 @@ public class EnemySpawner : MonoBehaviour
 
         // Generar una posicion aleatoria dentro del rango
         Vector3 randomPosition = new Vector3(
-            transform.position.x + Random.Range(-rangeX, rangeX),
-            transform.position.y + Random.Range(-rangeY, rangeY),
+            transform.position.x + UnityEngine.Random.Range(-rangeX, rangeX),
+            transform.position.y + UnityEngine.Random.Range(-rangeY, rangeY),
             transform.position.z
         );
 
@@ -108,6 +172,13 @@ public class EnemySpawner : MonoBehaviour
 
     public string[] GetWordList()
     {
-        return wordList;
+        return wordList.Select(item => item.word).ToArray();
+    }
+
+    // Clase auxiliar para deserializar el JSON
+    [System.Serializable]
+    private class WordListWrapper
+    {
+        public WordItem[] items;
     }
 }
