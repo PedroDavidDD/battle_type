@@ -1,157 +1,339 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Text;
+using System.Globalization;
+
+// Clase estática para manejar la normalización de texto
+public static class TextNormalizer
+{
+    // Variable para activar/desactivar la normalización
+    public static bool NormalizationEnabled { get; set; } = true;
+
+    public static string Normalize(string input)
+    {
+        if (string.IsNullOrEmpty(input) || !NormalizationEnabled)
+            return input;
+
+        // Convertir a minúsculas
+        string normalized = input.ToLowerInvariant();
+        
+        // Normalizar la cadena (separar caracteres de sus acentos)
+        normalized = normalized.Normalize(NormalizationForm.FormD);
+        
+        // Eliminar diacríticos, números y símbolos
+        var stringBuilder = new StringBuilder();
+        foreach (char c in normalized)
+        {
+            // Mantener letras y espacios
+            if (char.IsLetter(c) || c == ' ')
+            {
+                // Quitar diacríticos
+                string normalizedChar = c.ToString()
+                    .Normalize(NormalizationForm.FormC);
+                stringBuilder.Append(normalizedChar);
+            }
+            // Reemplazar guiones y otros separadores por espacio
+            else if (c == '-' || c == '_' || c == '/')
+            {
+                stringBuilder.Append(' ');
+            }
+        }
+        
+        // Limpiar espacios extras
+        string result = string.Join(" ", 
+            stringBuilder.ToString()
+                .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+        );
+
+        return result;
+    }
+}
 
 [System.Serializable]
 public class WordItem
 {
     public string word;
     public string tag;
+    [NonSerialized] public string normalizedWord; // No se guarda en el JSON
+
+    public void Normalize()
+    {
+        normalizedWord = TextNormalizer.Normalize(word);
+    }
 }
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab; // Prefab del enemigo
-    public Sprite[] enemySprites; // Array de sprites disponibles
-    public float spawnInterval = 4f; // Intervalo entre spawns
-    public float spawnRangeMultiplier = 1f; // Multiplicador para ajustar el rango de spawn
+    public GameObject enemyPrefab;
+    public Sprite[] enemySprites;
+    public float spawnInterval = 4f;
+    public float spawnRangeMultiplier = 1f;
 
-    public TextAsset wordListFile;
+    public TextAsset defaultWordListFile; // JSON por defecto
+    private TextAsset currentWordListFile; // JSON actual (puede ser el default o uno personalizado)
     private WordItem[] wordList;
     private Queue<WordItem> remainingWords;
+    private List<WordItem> allWordsCache; // Cache de todas las palabras sin filtrar
+
+    // UI References
+    public TMPro.TMP_Text gameStatusText;
+    
+    string selectedCategory;
 
     private void Start()
     {
-        // Verificar si el ButtonsManager existe en la escena
+        // Usar el JSON por defecto al inicio
+        currentWordListFile = defaultWordListFile;
+        InitializeGame();
+    }
+
+    private void InitializeGame()
+    {
         if (ButtonsManager.Instance == null)
         {
-            Debug.LogError("No se encontró el ButtonsManager en la escena");
+            Debug.LogError("ButtonsManager no encontrado");
             return;
         }
 
-        // Obtener la categoría seleccionada
-        string selectedCategory = ButtonsManager.Instance.txtCategory?.ToLower() ?? "programacion";
-        
-        // Cargar palabras desde el archivo de texto
-        if (wordListFile != null && !string.IsNullOrEmpty(wordListFile.text))
+        // Verificar si hay un JSON personalizado cargado
+        if (!string.IsNullOrEmpty(ButtonsManager.Instance.customJsonPath))
         {
             try
             {
-                // Deserializar el JSON directamente ya que el archivo ya tiene el formato correcto
-                var wrapper = JsonUtility.FromJson<WordListWrapper>(wordListFile.text);
-                if (wrapper != null && wrapper.items != null)
+                string jsonContent = System.IO.File.ReadAllText(ButtonsManager.Instance.customJsonPath);
+                TextAsset customJson = CreateTextAsset(jsonContent);
+                
+                // Primero intentar cargar el JSON personalizado
+                if (LoadAndParseJson(customJson))
                 {
-                    // Filtrar palabras por la categoría seleccionada
-                    wordList = wrapper.items
+                    // Verificar si hay palabras con la etiqueta 'custom' o 'programacion'
+                    var availableCategories = allWordsCache.Select(w => w.tag.ToLower()).Distinct().ToList();
+                    
+                    // Si hay palabras con la etiqueta 'custom', usarlas
+                    if (availableCategories.Contains("custom"))
+                    {
+                        selectedCategory = "custom";
+                    }
+                    // Si no, usar 'programacion' como categoría por defecto
+                    else if (availableCategories.Contains("programacion"))
+                    {
+                        selectedCategory = "programacion";
+                    }
+                    // Si no hay ninguna de las dos, usar la primera categoría disponible
+                    else if (availableCategories.Count > 0)
+                    {
+                        selectedCategory = availableCategories[0];
+                    }
+                    
+                    Debug.Log($"JSON personalizado cargado correctamente. Categoría seleccionada: {selectedCategory}");
+                    
+                    // Filtrar por categoría
+                    wordList = allWordsCache
                         .Where(item => item.tag.ToLower() == selectedCategory)
                         .ToArray();
                         
-                    Debug.Log($"Categoría seleccionada: {selectedCategory}");
-                    Debug.Log($"Palabras encontradas: {wordList.Length}");
-                    
-                    if (wordList.Length == 0)
+                    if (wordList.Length > 0)
                     {
-                        Debug.LogError($"No se encontraron palabras para la categoría: {selectedCategory}");
-                        return;
-                    }
-                    // Inicializar la cola con las palabras mezcladas
-                    if (ShuffleAndInitializeWords())
-                    {
-                        // Comenzar a generar enemigos solo si la inicialización fue exitosa
-                        InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
+                        if (ShuffleAndInitializeWords())
+                        {
+                            InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
+                            StartCoroutine(UpdateGameStatus("Juego en progreso..."));
+                        }
                         return;
                     }
                 }
-                else
-                {
-                    Debug.LogError("El archivo JSON no tiene el formato correcto o está vacío.");
-                }
+                
+                // Si llegamos aquí, hubo un error o no hay palabras en la categoría
+                Debug.LogError("Fallo al cargar JSON personalizado o no hay palabras en la categoría, cargando por defecto");
+                LoadDefaultWordList();
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
-                Debug.LogError($"Error al parsear el archivo JSON: {e.Message}");
+                Debug.LogError($"Error al cargar el archivo JSON personalizado: {e.Message}");
+                LoadDefaultWordList();
             }
         }
         else
         {
-            Debug.LogError("No se asigno el archivo de palabras o está vacío.");
+            // Cargar JSON por defecto si no hay personalizado
+            LoadDefaultWordList();
         }
 
-        // Si llegamos aquí, algo salió mal
-        wordList = new WordItem[0];
-        // Asegurarse de que no se intente generar enemigos
-        CancelInvoke("SpawnEnemy");
+        // Filtrar por categoría
+        wordList = allWordsCache
+            .Where(item => item.tag.ToLower() == selectedCategory)
+            .ToArray();
+
+        if (wordList.Length == 0)
+        {
+            Debug.LogError($"No hay palabras para la categoría: {selectedCategory}");
+            StartCoroutine(UpdateGameStatus("No hay palabras para esta categoría"));
+            return;
+        }
+
+        if (ShuffleAndInitializeWords())
+        {
+            InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
+            StartCoroutine(UpdateGameStatus("Juego en progreso..."));
+        }
     }
 
-    /// <summary>
-    /// Mezcla las palabras y las prepara para ser usadas.
-    /// </summary>
-    private bool ShuffleAndInitializeWords()
+    [System.Serializable]
+    private class WordListWrapper
     {
-        if (wordList == null || wordList.Length == 0)
+        public List<WordItem> items = new List<WordItem>();
+    }
+
+    // La clase TextNormalizer ha sido movida al nivel del namespace para mejor accesibilidad
+
+    private bool LoadAndParseJson(TextAsset jsonFile)
+    {
+        if (jsonFile == null || string.IsNullOrEmpty(jsonFile.text))
         {
-            Debug.LogError("No hay palabras para mezclar.");
+            Debug.LogError("El archivo JSON está vacío o es nulo");
             return false;
         }
 
-        List<WordItem> shuffledWords = new List<WordItem>(wordList);
-        for (int i = 0; i < shuffledWords.Count; i++)
+        try
         {
-            int randomIndex = UnityEngine.Random.Range(i, shuffledWords.Count);
-            WordItem temp = shuffledWords[i];
-            shuffledWords[i] = shuffledWords[randomIndex];
-            shuffledWords[randomIndex] = temp;
+            var wrapper = JsonUtility.FromJson<WordListWrapper>(jsonFile.text);
+            if (wrapper != null && wrapper.items != null && wrapper.items.Count > 0)
+            {
+                allWordsCache = new List<WordItem>(wrapper.items);
+                
+                // Normalizar todas las palabras
+                foreach (var wordItem in allWordsCache)
+                {
+                    wordItem.Normalize();
+                }
+                
+                string estadoNormalizacion = TextNormalizer.NormalizationEnabled ? "activada" : "desactivada";
+                Debug.Log($"Se cargaron {allWordsCache.Count} palabras del JSON (Normalización: {estadoNormalizacion})");
+                return true;
+            }
+            else
+            {
+                Debug.LogError("El archivo JSON no contiene palabras válidas o está vacío");
+                return false;
+            }
         }
-        if (shuffledWords == null || shuffledWords.Count == 0)
+        catch (Exception e)
         {
-            Debug.LogError("No se pudieron mezclar las palabras.");
-            return false;
+            Debug.LogError($"Error parsing JSON: {e.Message}");
+        }
+        return false;
+    }
+
+    private bool ShuffleAndInitializeWords()
+    {
+        if (wordList == null || wordList.Length == 0) return false;
+
+        // Mezcla eficiente con Fisher-Yates
+        var shuffledWords = wordList.ToList();
+        for (int i = shuffledWords.Count - 1; i > 0; i--)
+        {
+            int j = UnityEngine.Random.Range(0, i + 1);
+            var temp = shuffledWords[i];
+            shuffledWords[i] = shuffledWords[j];
+            shuffledWords[j] = temp;
         }
 
         remainingWords = new Queue<WordItem>(shuffledWords);
         return true;
     }
 
+    public void ResetGame()
+    {
+        CancelInvoke("SpawnEnemy");
+        
+        // No necesitamos recargar el JSON, usamos la cache
+        if (wordList != null && wordList.Length > 0)
+        {
+            ShuffleAndInitializeWords();
+            InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
+            StartCoroutine(UpdateGameStatus("Juego reiniciado"));
+        }
+        else
+        {
+            StartCoroutine(UpdateGameStatus("No hay palabras para reiniciar"));
+        }
+    }
+
     private void SpawnEnemy()
     {
         if (remainingWords.Count == 0)
         {
-            CancelInvoke("SpawnEnemy");
+            ResetGame();
             return;
         }
 
-        WordItem nextWord = remainingWords.Dequeue();
-        Vector3 randomPosition = GetPositionRange();
-        GameObject enemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
+        var nextWord = remainingWords.Dequeue();
+        var enemy = Instantiate(enemyPrefab, GetPositionRange(), Quaternion.identity);
 
-        // --- Buscar el objeto "body" y asignar el sprite ---
-        Transform body = enemy.transform.Find("Body"); // Busca el hijo "body"
-        if (body != null)
+        // Asignar sprite
+        var body = enemy.transform.Find("Body");
+        if (body != null && enemySprites.Length > 0)
         {
-            SpriteRenderer bodyRenderer = body.GetComponent<SpriteRenderer>();
-            if (bodyRenderer != null && enemySprites.Length > 0)
-            {   
-                // Asignar un sprite aleatorio al cuerpo
-                bodyRenderer.sprite = enemySprites[UnityEngine.Random.Range(0, enemySprites.Length)];
-            }
-            else
+            body.GetComponent<SpriteRenderer>().sprite = 
+                enemySprites[UnityEngine.Random.Range(0, enemySprites.Length)];
+        }
+
+        // Asignar palabra (usar la versión normalizada para mostrar)
+        var enemyScript = enemy.GetComponent<Enemy>();
+        if (enemyScript != null) 
+        {
+            // Usar la versión normalizada si existe, de lo contrario usar la original
+            string wordToShow = !string.IsNullOrEmpty(nextWord.normalizedWord) ? 
+                nextWord.normalizedWord : 
+                TextNormalizer.Normalize(nextWord.word);
+                
+            enemyScript.SetEnemyWord(wordToShow);
+            
+            // Para depuración: mostrar la palabra original y la normalizada
+            Debug.Log($"Palabra original: '{nextWord.word}' → Normalizada: '{wordToShow}'");
+        }
+    }
+
+    private IEnumerator UpdateGameStatus(string message)
+    {
+        if (gameStatusText != null) gameStatusText.text = message;
+        yield return new WaitForSeconds(2f);
+        gameStatusText.text = "";
+    }
+
+    // Método auxiliar para cargar la lista de palabras por defecto
+    private void LoadDefaultWordList()
+    {
+        if (defaultWordListFile == null)
+        {
+            Debug.LogError("No se ha asignado un archivo de lista de palabras por defecto");
+            return;
+        }
+
+        selectedCategory = "custom";
+        
+        // Solo parsear el JSON si es necesario (primera vez o nuevo archivo)
+        if (allWordsCache == null || currentWordListFile != defaultWordListFile)
+        {
+            if (!LoadAndParseJson(defaultWordListFile))
             {
-                Debug.LogError("El objeto 'body' no tiene SpriteRenderer o no hay sprites asignados.");
+                Debug.LogError("Fallo al cargar el archivo de palabras por defecto");
+                return;
             }
+            currentWordListFile = defaultWordListFile;
         }
-        else
-        {
-            Debug.LogError("No se encontro el objeto hijo 'body' en el prefab del enemigo.");
-        }
+    }
 
-        // Asignar la palabra al enemigo
-        Enemy enemyCustom = enemy.GetComponent<Enemy>();
-        if (enemyCustom != null)
-        {
-            enemyCustom.SetEnemyWord(nextWord.word);
-            // Aquí podrías usar nextWord.tag si necesitas la etiqueta para algo
-        }
+    private TextAsset CreateTextAsset(string content)
+    {
+        // Crear un TextAsset virtual (en runtime)
+        // Nota: En build real necesitarías una solución diferente
+        var ta = new TextAsset(content);
+        return ta;
     }
 
     public Vector3 GetPositionRange()
@@ -170,15 +352,4 @@ public class EnemySpawner : MonoBehaviour
         return randomPosition;
     }
 
-    public string[] GetWordList()
-    {
-        return wordList.Select(item => item.word).ToArray();
-    }
-
-    // Clase auxiliar para deserializar el JSON
-    [System.Serializable]
-    private class WordListWrapper
-    {
-        public WordItem[] items;
-    }
 }

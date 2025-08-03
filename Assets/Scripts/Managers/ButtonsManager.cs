@@ -1,11 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Linq;
 
 public class ButtonsManager : MonoBehaviour
 {
     public static ButtonsManager Instance { get; private set; }
     
     public string txtCategory;
+    public string customJsonPath; // Para almacenar la ruta del JSON personalizado
+    
+    // UI References
+    public Button loadCustomJsonButton;
     
     private void Awake()
     {
@@ -18,6 +24,12 @@ public class ButtonsManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        // Configurar botones
+        InitialButtons();
     }
 
     public void Salir()
@@ -40,7 +52,7 @@ public class ButtonsManager : MonoBehaviour
     public void SelectCategory(string category)
     {
         // Asignar la categoría seleccionada al ButtonsManager
-        if (category == "programacion" || category == "razas")
+        if (category == "programacion" || category == "razas" || category == "custom")
         {
             txtCategory = category;
         }
@@ -60,5 +72,26 @@ public class ButtonsManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+    }
+
+    public void OpenFileBrowser()
+    {
+        // Abrir el diálogo para seleccionar archivo JSON
+        string path = UnityEditor.EditorUtility.OpenFilePanel("Seleccionar JSON", "", "json");
+        
+        if (!string.IsNullOrEmpty(path))
+        {
+            // Guardar la ruta del archivo seleccionado
+            customJsonPath = path;
+            
+            // Cargar la escena del juego (asegúrate de que la escena del juego tiene el índice 2)
+            txtCategory = "custom"; // Usamos una categoría especial para JSON personalizado
+            SceneManager.LoadScene(2);
+        }
+    }
+
+    private void InitialButtons()
+    {
+        if (loadCustomJsonButton != null) loadCustomJsonButton.onClick.AddListener(OpenFileBrowser);
     }
 }
