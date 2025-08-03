@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Windows;
 using UnityEngine.UI;
 
 public class WordManager : MonoBehaviour
@@ -18,11 +16,14 @@ public class WordManager : MonoBehaviour
     // Palabra seleccionada
     private string selectedWord = "";
     public ButtonController buttonController;
-    
+    public EnemySpawner enemySpawner;
+
     private void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        InitializeEnemies();
+        gameManager = FindFirstObjectByType<GameManager>();
+        enemySpawner = FindFirstObjectByType<EnemySpawner>();
+        
+        InitializeEnemies();   
     }
 
     // Método para inicializar los enemigos
@@ -47,8 +48,12 @@ public class WordManager : MonoBehaviour
 
     public void UnregisterEnemy(Enemy enemy)
     {
-        activeEnemies.Remove(enemy);
+        if (activeEnemies.Remove(enemy))
+        {
+            Debug.Log($"Enemigo eliminado. Enemigos restantes: {activeEnemies.Count}");
+        }
     }
+    
     public void CheckInput(string currentInput)
     {
         if (buttonController){

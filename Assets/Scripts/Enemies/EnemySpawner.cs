@@ -78,6 +78,7 @@ public class EnemySpawner : MonoBehaviour
     private WordItem[] wordList;
     private Queue<WordItem> remainingWords;
     private List<WordItem> allWordsCache; // Cache de todas las palabras sin filtrar
+    private GameManager gameManager;
 
     // UI References
     public TMPro.TMP_Text gameStatusText;
@@ -86,9 +87,28 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
         // Usar el JSON por defecto al inicio
         currentWordListFile = defaultWordListFile;
         InitializeGame();
+
+        // Al iniciar, establecer el total de enemigos en GameManager
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.totalEnemiesToSpawn = wordList.Length;
+        }
+    }
+    // Verificar Victoria 
+    public void CheckVictory()
+    {
+        if (gameManager == null) return;
+
+            // Terminar el juego con mensaje de victoria
+            StartCoroutine(UpdateGameStatus("¡Ganaste!"));
+            CancelInvoke("SpawnEnemy"); // Detener el spawn de enemigos
+            gameManager.ShowGameOver();
     }
 
     private void InitializeGame()
@@ -246,28 +266,16 @@ public class EnemySpawner : MonoBehaviour
         return true;
     }
 
-    public void ResetGame()
-    {
-        CancelInvoke("SpawnEnemy");
-        
-        // No necesitamos recargar el JSON, usamos la cache
-        if (wordList != null && wordList.Length > 0)
-        {
-            ShuffleAndInitializeWords();
-            InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
-            StartCoroutine(UpdateGameStatus("Juego reiniciado"));
-        }
-        else
-        {
-            StartCoroutine(UpdateGameStatus("No hay palabras para reiniciar"));
-        }
-    }
-
     private void SpawnEnemy()
     {
+        // Si no hay más palabras, verificar victoria
         if (remainingWords.Count == 0)
         {
-            ResetGame();
+            if (GameManager.Instance != null && 
+            GameManager.Instance.enemiesKilled >= GameManager.Instance.totalEnemiesToSpawn)
+            {
+                CheckVictory();
+            }
             return;
         }
 

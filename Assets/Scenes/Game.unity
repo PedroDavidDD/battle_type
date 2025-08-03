@@ -767,6 +767,7 @@ MonoBehaviour:
   enemiesPerLevel: 5
   txtInput: {fileID: 362417750}
   playerSoundController: {fileID: 0}
+  totalEnemiesToSpawn: 0
 --- !u!1 &304490341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,6 +2147,8 @@ MonoBehaviour:
   isPaused: 0
   pausePanel: {fileID: 633386639}
   txtInput: {fileID: 362417750}
+  gameOverPanel: {fileID: 193925192}
+  playerSoundController: {fileID: 161477117}
 --- !u!1 &694736909
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,6 +2478,7 @@ MonoBehaviour:
   shootPoint: {fileID: 1887049377}
   playerSoundController: {fileID: 161477117}
   buttonController: {fileID: 674410290}
+  enemySpawner: {fileID: 0}
 --- !u!1 &1120973064
 GameObject:
   m_ObjectHideFlags: 0

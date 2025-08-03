@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private Text enemyTextWord;
     [SerializeField] private Slider liveEnemy;
+    [SerializeField] private EnemySpawner enemySpawner;
 
     [System.Obsolete]
     private void Start()
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour
         // Obtener referencias
         wordManager = GameObject.FindFirstObjectByType<WordManager>();
         gameManager = GameObject.FindFirstObjectByType<GameManager>();
+        enemySpawner = GameObject.FindFirstObjectByType<EnemySpawner>();
 
         if (enemySoundController == null)
         {
@@ -93,7 +95,15 @@ public class Enemy : MonoBehaviour
         if (this.enemyLive <= 0)
         {
             Debug.Log("El enemigo ha sido derrotado.");
+            
+             // Verificar victoria después de matar un enemigo
+            if (gameManager.enemiesKilled >= gameManager.totalEnemiesToSpawn)
+            {
+                enemySpawner.CheckVictory();
+            }
+
             Destroy(gameObject);
+
             EnemyPoints(5);
 
             enemySoundController.PlayMuerteEnemigoSound();
@@ -103,6 +113,7 @@ public class Enemy : MonoBehaviour
 
             InputHandler inputHandler = GameObject.Find("InputHandler").GetComponent<InputHandler>();
             inputHandler.SetCurrentInput("");
+
         }
     }
     private void EnemyPoints(int points = 10)

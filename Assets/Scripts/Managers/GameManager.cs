@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     // Caracteres escritos
     public int wordsCompleted;
     // Enemigos eliminados
+    [Header("Enemy deleted")]
     public int enemiesKilled;
     public GameOverPanel gameOverPanel;
     
@@ -25,12 +27,15 @@ public class GameManager : MonoBehaviour
     public GameObject txtInput;
     public PlayerSoundController playerSoundController;
 
+    [Header("Enemy data")]
+    public int totalEnemiesToSpawn = 0;  // Total de enemigos que deben aparecer
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Hace que el objeto persista entre escenas
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -45,8 +50,9 @@ public class GameManager : MonoBehaviour
         lives = 5;
         gameOverPanel = gameOverPanel.GetComponent<GameOverPanel>();
         playerSoundController = GameObject.Find("Player").GetComponent<PlayerSoundController>();
+        txtInput = GameObject.Find("Panel");
     }
-
+    
     public void AddScore(int points)
     {
         if (isGameOver) return; // Evitar cambios si el juego ha terminado
@@ -120,8 +126,10 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        // Restablecer el tiempo del juego
-        Time.timeScale = 1;
+        
+        // Primero restablecer el tiempo
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
 
         // Reiniciar variables
         score = 0;
@@ -137,6 +145,7 @@ public class GameManager : MonoBehaviour
         enemiesKilled = 0;  
 
         Debug.Log("Juego reiniciado!");
+
         // Recargar la escena actual
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         
@@ -167,4 +176,5 @@ public class GameManager : MonoBehaviour
     {
         return Time.time - gameStartTime;
     }
+
 }
