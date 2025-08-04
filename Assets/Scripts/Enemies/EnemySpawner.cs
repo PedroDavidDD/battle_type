@@ -119,76 +119,89 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        // Verificar si hay un JSON personalizado cargado
-        if (!string.IsNullOrEmpty(ButtonsManager.Instance.customJsonPath))
+        // Obtener la categoría seleccionada del ButtonsManager
+        selectedCategory = ButtonsManager.Instance.txtCategory?.ToLower();
+        Debug.Log($"Categoría seleccionada: {selectedCategory}");
+        
+        if (selectedCategory == "custom" && !string.IsNullOrEmpty(ButtonsManager.Instance.customJsonPath))
         {
-            try
+            try 
             {
-                string jsonContent = System.IO.File.ReadAllText(ButtonsManager.Instance.customJsonPath);
-                TextAsset customJson = CreateTextAsset(jsonContent);
-                
-                // Primero intentar cargar el JSON personalizado
-                if (LoadAndParseJson(customJson))
+                // Cargar JSON personalizado
+                TextAsset customJson = new TextAsset(System.IO.File.ReadAllText(ButtonsManager.Instance.customJsonPath));
+                if (customJson != null)
                 {
-                    // Verificar si hay palabras con la etiqueta 'custom' o 'programacion'
-                    var availableCategories = allWordsCache.Select(w => w.tag.ToLower()).Distinct().ToList();
-                    
-                    // Si hay palabras con la etiqueta 'custom', usarlas
-                    if (availableCategories.Contains("custom"))
+                    if (!LoadAndParseJson(customJson))
                     {
-                        selectedCategory = "custom";
-                    }
-                    // Si no, usar 'programacion' como categoría por defecto
-                    else if (availableCategories.Contains("programacion"))
-                    {
-                        selectedCategory = "programacion";
-                    }
-                    // Si no hay ninguna de las dos, usar la primera categoría disponible
-                    else if (availableCategories.Count > 0)
-                    {
-                        selectedCategory = availableCategories[0];
-                    }
-                    
-                    Debug.Log($"JSON personalizado cargado correctamente. Categoría seleccionada: {selectedCategory}");
-                    
-                    // Filtrar por categoría
-                    wordList = allWordsCache
-                        .Where(item => item.tag.ToLower() == selectedCategory)
-                        .ToArray();
-                        
-                    if (wordList.Length > 0)
-                    {
-                        if (ShuffleAndInitializeWords())
-                        {
-                            InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
-                            StartCoroutine(UpdateGameStatus("Juego en progreso..."));
-                        }
-                        return;
+                        Debug.LogError("Fallo al cargar el JSON personalizado");
+                        LoadDefaultWordList();
                     }
                 }
-                
-                // Si llegamos aquí, hubo un error o no hay palabras en la categoría
-                Debug.LogError("Fallo al cargar JSON personalizado o no hay palabras en la categoría, cargando por defecto");
-                LoadDefaultWordList();
             }
             catch (System.Exception e)
             {
-                Debug.LogError($"Error al cargar el archivo JSON personalizado: {e.Message}");
+                Debug.LogError($"Error al cargar JSON personalizado: {e.Message}");
                 LoadDefaultWordList();
             }
         }
         else
         {
-            // Cargar JSON por defecto si no hay personalizado
+            // Cargar JSON por defecto para categorías predefinidas
             LoadDefaultWordList();
         }
 
-        // Filtrar por categoría
-        wordList = allWordsCache
-            .Where(item => item.tag.ToLower() == selectedCategory)
-            .ToArray();
+        if (allWordsCache == null || allWordsCache.Count == 0)
+        {
+            Debug.LogError("No se cargaron palabras desde el archivo JSON");
+            StartCoroutine(UpdateGameStatus("Error al cargar palabras"));
+            return;
+        }
 
-        if (wordList.Length == 0)
+        // Obtener todas las categorías disponibles (excluyendo 'custom' que es especial)
+        var availableCategories = allWordsCache
+            .Select(item => item.tag.ToLower())
+            .Where(tag => tag != "custom") // Excluir 'custom' de las categorías normales
+            .Distinct()
+            .ToList();
+            
+        Debug.Log($"Categorías disponibles: {string.Join(", ", availableCategories)}");
+
+        // Si es modo 'custom', usar todas las palabras
+        if (selectedCategory == "custom")
+        {
+            wordList = allWordsCache.ToArray();
+            Debug.Log($"Modo personalizado: usando todas las {wordList.Length} palabras disponibles");
+        }
+        // Si la categoría seleccionada no existe, usar la primera disponible
+        else if (!availableCategories.Contains(selectedCategory) && availableCategories.Count > 0)
+        {
+            string fallbackCategory = availableCategories[0];
+            Debug.LogWarning($"La categoría '{selectedCategory}' no existe. Usando '{fallbackCategory}' en su lugar.");
+            selectedCategory = fallbackCategory;
+            
+            wordList = allWordsCache
+                .Where(item => item.tag.ToLower() == selectedCategory)
+                .ToArray();
+        }
+        // Filtrar por la categoría seleccionada
+        else
+        {
+            wordList = allWordsCache
+                .Where(item => item.tag.ToLower() == selectedCategory)
+                .ToArray();
+        }
+        
+        // Si no hay categorías disponibles, mostrar error
+        if (availableCategories.Count == 0 && selectedCategory != "custom")
+        {
+            Debug.LogError("No se encontraron categorías en el archivo de palabras");
+            StartCoroutine(UpdateGameStatus("Error: No hay palabras disponibles"));
+            return;
+        }
+            
+        Debug.Log($"Palabras cargadas para categoría '{selectedCategory}': {wordList.Length}");
+
+        if (wordList == null || wordList.Length == 0)
         {
             Debug.LogError($"No hay palabras para la categoría: {selectedCategory}");
             StartCoroutine(UpdateGameStatus("No hay palabras para esta categoría"));
@@ -321,18 +334,20 @@ public class EnemySpawner : MonoBehaviour
             Debug.LogError("No se ha asignado un archivo de lista de palabras por defecto");
             return;
         }
-
-        selectedCategory = "custom";
+        
+        Debug.Log($"Cargando palabras por defecto. Categoría actual: {selectedCategory}");
         
         // Solo parsear el JSON si es necesario (primera vez o nuevo archivo)
         if (allWordsCache == null || currentWordListFile != defaultWordListFile)
         {
+            Debug.Log("Parseando archivo JSON por defecto...");
             if (!LoadAndParseJson(defaultWordListFile))
             {
                 Debug.LogError("Fallo al cargar el archivo de palabras por defecto");
                 return;
             }
             currentWordListFile = defaultWordListFile;
+            Debug.Log($"Total de palabras cargadas: {allWordsCache?.Count ?? 0}");
         }
     }
 

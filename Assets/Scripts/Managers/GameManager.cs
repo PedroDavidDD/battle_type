@@ -50,10 +50,9 @@ public class GameManager : MonoBehaviour
     
     public void AddScore(int points)
     {
-        if (isGameOver) return; // Evitar cambios si el juego ha terminado
+        if (isGameOver) return;
 
         score += points;
-        Debug.Log("Score: " + score);
     }
 
     public void AddLevel()
@@ -64,10 +63,9 @@ public class GameManager : MonoBehaviour
 
     public void LoseLife()
     {
-        if (isGameOver) return; // Evitar cambios si el juego ha terminado
+        if (isGameOver) return;
 
         lives--;
-        Debug.Log("Lives: " + lives);
 
         if (lives <= 0)
         {
@@ -75,7 +73,7 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.ShowGameOver();
             
             Player.Instance.playerSoundController.PlayMuerteJugadorSound();
-        }else{
+        } else {
             UIManager.Instance.HideGameOver();
         }
     }

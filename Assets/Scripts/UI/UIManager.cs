@@ -82,7 +82,9 @@ public class UIManager : MonoBehaviour
             gameOverPanel.gameObject.SetActive(false);
         }
 
-        Time.timeScale = 1;
+        // Primero restablecer el tiempo
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
 
         if (txtInput != null)
         {
