@@ -36,8 +36,10 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
-
+        
+        // Inicializar el tiempo al inicio
         gameStartTime = Time.time;
     }
 
@@ -91,35 +93,25 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        
         // Primero restablecer el tiempo
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
 
         // Reiniciar variables
         score = 0;
-        lives = 10;
+        lives = 5;
         isGameOver = false;
         currentLevel = 0;
-        
-        // Restablecer el tiempo del juego
-        gameStartTime = 0f;      
-        // Palabras completadas
         wordsCompleted = 0;
-        // Enemigos eliminados
-        enemiesKilled = 0;  
-
+        enemiesKilled = 0;
+        
         Debug.Log("Juego reiniciado!");
 
         // Recargar la escena actual
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         
-        // Obtener referencia al WordManager y inicializar los enemigos
-        WordManager wordManager = GameObject.FindFirstObjectByType<WordManager>();
-        if (wordManager != null)
-        {
-            wordManager.InitializeEnemies();
-        }
+        // Reiniciar el tiempo justo después de cargar la escena
+        gameStartTime = Time.time;
     }
 
     public void AddWordCompleted()
