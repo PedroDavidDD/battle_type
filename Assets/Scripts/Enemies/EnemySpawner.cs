@@ -78,18 +78,21 @@ public class EnemySpawner : MonoBehaviour
     private WordItem[] wordList;
     private Queue<WordItem> remainingWords;
     private List<WordItem> allWordsCache; // Cache de todas las palabras sin filtrar
+    [SerializeField]
     private UIManager UIManager;
+    [SerializeField]
     private GameManager gameManager;
     // UI References
     public TMPro.TMP_Text gameStatusText;
+    public CategoryState categoryState;
     
     string selectedCategory;
 
     private void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         UIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        categoryState = CategoryState.Instance;
         // Usar el JSON por defecto al inicio
         currentWordListFile = defaultWordListFile;
         InitializeGame();
@@ -113,22 +116,22 @@ public class EnemySpawner : MonoBehaviour
 
     private void InitializeGame()
     {
-        if (ButtonsManager.Instance == null)
+        if (categoryState == null)
         {
-            Debug.LogError("ButtonsManager no encontrado");
+            Debug.LogError("CategoryState no encontrado");
             return;
         }
 
         // Obtener la categoría seleccionada del ButtonsManager
-        selectedCategory = ButtonsManager.Instance.txtCategory?.ToLower();
+        selectedCategory = categoryState.txtCategory?.ToLower();
         Debug.Log($"Categoría seleccionada: {selectedCategory}");
         
-        if (selectedCategory == "custom" && !string.IsNullOrEmpty(ButtonsManager.Instance.customJsonPath))
+        if (selectedCategory == "custom" && !string.IsNullOrEmpty(categoryState.customJsonPath))
         {
             try 
             {
                 // Cargar JSON personalizado
-                TextAsset customJson = new TextAsset(System.IO.File.ReadAllText(ButtonsManager.Instance.customJsonPath));
+                TextAsset customJson = new TextAsset(System.IO.File.ReadAllText(categoryState.customJsonPath));
                 if (customJson != null)
                 {
                     if (!LoadAndParseJson(customJson))

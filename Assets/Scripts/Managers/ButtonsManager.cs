@@ -4,40 +4,30 @@ using UnityEngine.UI;
 using System.Linq;
 
 public class ButtonsManager : MonoBehaviour
-{
+{    
+    public CategoryState categoryState;
+
+    /*
     public static ButtonsManager Instance { get; private set; }
-    
-    public string txtCategory;
-    public string customJsonPath; // Para almacenar la ruta del JSON personalizado
-    
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Hace que el objeto persista entre escenas
+            DontDestroyOnLoad(gameObject);
         }
-        else if (Instance != this)
+        else
         {
             Destroy(gameObject);
+            return;
         }
-    }
+    }*/
 
-    public void Salir()
+    private void Start()
     {
-        Application.Quit();
+        categoryState = CategoryState.Instance;
     }
-
-    public void Menu()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    public void Categories()
-    {
-        SceneManager.LoadScene(1);
-    }
-
+    
     // Método que selecciona la categoría (programación o razas de animales de fantasía)
     // y carga la escena del juego con la categoría seleccionada
     public void SelectCategory(string category)
@@ -45,11 +35,11 @@ public class ButtonsManager : MonoBehaviour
         // Asignar la categoría seleccionada al ButtonsManager
         if (category == "programacion" || category == "razas" || category == "custom")
         {
-            txtCategory = category;
+            categoryState.txtCategory = category;
         }
         else
         {
-            txtCategory = "programacion";
+            categoryState.txtCategory = "programacion";
         }
 
         SceneManager.LoadScene(2);
@@ -58,13 +48,8 @@ public class ButtonsManager : MonoBehaviour
     public void Credits()
     {
         SceneManager.LoadScene(3);
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex );
-    }
-
+    }   
+    
     public void OpenFileBrowser()
     {
         // Abrir el diálogo para seleccionar archivo JSON
@@ -73,10 +58,10 @@ public class ButtonsManager : MonoBehaviour
         if (!string.IsNullOrEmpty(path))
         {
             // Guardar la ruta del archivo seleccionado
-            customJsonPath = path;
+            categoryState.customJsonPath = path;
             
             // Cargar la escena del juego (asegúrate de que la escena del juego tiene el índice 2)
-            txtCategory = "custom"; // Usamos una categoría especial para JSON personalizado
+            categoryState.txtCategory = "custom"; // Usamos una categoría especial para JSON personalizado
             SceneManager.LoadScene(2);
         }
     }
