@@ -423,6 +423,7 @@ GameObject:
   - component: {fileID: 161477115}
   - component: {fileID: 161477116}
   - component: {fileID: 161477117}
+  - component: {fileID: 161477118}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -613,6 +614,19 @@ MonoBehaviour:
   audioSource: {fileID: 161477116}
   sonidoDisparo: {fileID: 8300000, guid: 4d988f8ab976a404f991711134a05614, type: 3}
   sonidoMuerteJugador: {fileID: 8300000, guid: 461232ddfec7eae46a7b25f2b92af993, type: 3}
+--- !u!114 &161477118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161477112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54520a877e0d82f4cb24eef78938c4a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSoundController: {fileID: 161477117}
 --- !u!1 &193925188
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,11 +776,8 @@ MonoBehaviour:
   gameStartTime: 0
   wordsCompleted: 0
   enemiesKilled: 0
-  gameOverPanel: {fileID: 193925192}
   currentLevel: 0
   enemiesPerLevel: 5
-  txtInput: {fileID: 362417750}
-  playerSoundController: {fileID: 0}
   totalEnemiesToSpawn: 0
 --- !u!1 &304490341
 GameObject:
@@ -2147,8 +2158,6 @@ MonoBehaviour:
   isPaused: 0
   pausePanel: {fileID: 633386639}
   txtInput: {fileID: 362417750}
-  gameOverPanel: {fileID: 193925192}
-  playerSoundController: {fileID: 161477117}
 --- !u!1 &694736909
 GameObject:
   m_ObjectHideFlags: 0
@@ -4109,8 +4118,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 260411816}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 2095277850}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
@@ -4194,6 +4203,9 @@ MonoBehaviour:
   activeWordsText: {fileID: 1152286850}
   inputText: {fileID: 1653687521}
   timeText: {fileID: 18449325}
+  gameOverPanel: {fileID: 193925192}
+  txtInput: {fileID: 362417750}
+  gameManager: {fileID: 260411816}
 --- !u!4 &2095277851
 Transform:
   m_ObjectHideFlags: 0

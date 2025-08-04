@@ -768,7 +768,7 @@ GameObject:
   - component: {fileID: 900616529}
   - component: {fileID: 900616528}
   m_Layer: 5
-  m_Name: BtnRazas (1)
+  m_Name: BtnCustom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -838,7 +838,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 900616529}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2045189383}
+        m_TargetAssemblyTypeName: ButtonsManager, Assembly-CSharp
+        m_MethodName: OpenFileBrowser
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &900616529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1857,6 +1869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txtCategory: 
+  customJsonPath: 
   loadCustomJsonButton: {fileID: 900616528}
 --- !u!4 &2045189384
 Transform:

@@ -19,13 +19,9 @@ public class GameManager : MonoBehaviour
     // Enemigos eliminados
     [Header("Enemy deleted")]
     public int enemiesKilled;
-    public GameOverPanel gameOverPanel;
     
     public int currentLevel = 0;
     public int enemiesPerLevel = 5;
-
-    public GameObject txtInput;
-    public PlayerSoundController playerSoundController;
 
     [Header("Enemy data")]
     public int totalEnemiesToSpawn = 0;  // Total de enemigos que deben aparecer
@@ -48,9 +44,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         lives = 5;
-        gameOverPanel = gameOverPanel.GetComponent<GameOverPanel>();
-        playerSoundController = GameObject.Find("Player").GetComponent<PlayerSoundController>();
-        txtInput = GameObject.Find("Panel");
     }
     
     public void AddScore(int points)
@@ -77,28 +70,15 @@ public class GameManager : MonoBehaviour
         if (lives <= 0)
         {
             // Mostrar el panel del Game Over
-            ShowGameOver();
+            UIManager.Instance.ShowGameOver();
             
-            playerSoundController.PlayMuerteJugadorSound();
+            Player.Instance.playerSoundController.PlayMuerteJugadorSound();
+        }else{
+            UIManager.Instance.HideGameOver();
         }
     }
 
-    public void ShowGameOver()
-    {
-        if (gameOverPanel != null)
-        {
-            gameOverPanel.ShowPanel();
-        }
-        
-        GameOver();
-        
-        if (txtInput != null)
-        {
-            txtInput.SetActive(false);
-        }
-    }
-
-    private void GameOver()
+    public void GameOver()
     {
         if (isGameOver) return; // Evitar ejecutar Game Over multiples veces
 
@@ -107,21 +87,6 @@ public class GameManager : MonoBehaviour
         // Detener el tiempo del juego
         Time.timeScale = 0;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
-    }
-
-    public void HideGameOver()
-    {
-        if (gameOverPanel != null)
-        {
-            gameOverPanel.gameObject.SetActive(false);
-        }
-
-        Time.timeScale = 1;
-
-        if (txtInput != null)
-        {
-            txtInput.SetActive(true);
-        }
     }
 
     public void RestartGame()

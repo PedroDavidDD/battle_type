@@ -78,8 +78,8 @@ public class EnemySpawner : MonoBehaviour
     private WordItem[] wordList;
     private Queue<WordItem> remainingWords;
     private List<WordItem> allWordsCache; // Cache de todas las palabras sin filtrar
+    private UIManager UIManager;
     private GameManager gameManager;
-
     // UI References
     public TMPro.TMP_Text gameStatusText;
     
@@ -87,28 +87,28 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        UIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         
         // Usar el JSON por defecto al inicio
         currentWordListFile = defaultWordListFile;
         InitializeGame();
 
         // Al iniciar, establecer el total de enemigos en GameManager
-        if (GameManager.Instance != null)
+        if (gameManager != null)
         {
-            GameManager.Instance.totalEnemiesToSpawn = wordList.Length;
+            gameManager.totalEnemiesToSpawn = wordList.Length;
         }
     }
     // Verificar Victoria 
     public void CheckVictory()
     {
-        if (gameManager == null) return;
+        if (UIManager == null) return;
 
             // Terminar el juego con mensaje de victoria
             StartCoroutine(UpdateGameStatus("¡Ganaste!"));
             CancelInvoke("SpawnEnemy"); // Detener el spawn de enemigos
-            gameManager.ShowGameOver();
+            UIManager.ShowGameOver();
     }
 
     private void InitializeGame()

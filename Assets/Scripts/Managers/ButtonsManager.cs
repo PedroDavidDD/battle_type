@@ -10,9 +10,6 @@ public class ButtonsManager : MonoBehaviour
     public string txtCategory;
     public string customJsonPath; // Para almacenar la ruta del JSON personalizado
     
-    // UI References
-    public Button loadCustomJsonButton;
-    
     private void Awake()
     {
         if (Instance == null)
@@ -24,12 +21,6 @@ public class ButtonsManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
-        // Configurar botones
-        InitialButtons();
     }
 
     public void Salir()
@@ -71,7 +62,7 @@ public class ButtonsManager : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+        SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex );
     }
 
     public void OpenFileBrowser()
@@ -88,10 +79,5 @@ public class ButtonsManager : MonoBehaviour
             txtCategory = "custom"; // Usamos una categoría especial para JSON personalizado
             SceneManager.LoadScene(2);
         }
-    }
-
-    private void InitialButtons()
-    {
-        if (loadCustomJsonButton != null) loadCustomJsonButton.onClick.AddListener(OpenFileBrowser);
     }
 }

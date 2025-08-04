@@ -10,6 +10,32 @@ public class UIManager : MonoBehaviour
     public Text inputText;
     public Text timeText;
 
+    [Header("Variable para el panel de Game Over")]
+    public GameOverPanel gameOverPanel;
+    [Header("Variable para el texto de la entrada")]
+    public GameObject txtInput;
+    public GameManager gameManager;
+
+    public static UIManager Instance { get; private set; }
+
+    private void Awake() {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    private void Start() {
+        
+        gameOverPanel = gameOverPanel.GetComponent<GameOverPanel>();
+        txtInput = GameObject.Find("Panel");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
     private void Update()
     {
         // Obtener la entrada actual del jugador
@@ -18,7 +44,7 @@ public class UIManager : MonoBehaviour
         // Verificar coincidencias de caracteres con las palabras de los enemigos
         GameObject.Find("WordManager").GetComponent<WordManager>().CheckCharacterMatch(currentInputText, activeWordsText);
 
-        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         livesText.text = "" + gameManager.lives.ToString();
         scoreText.text = "Puntaje: " + gameManager.score.ToString();
         levelText.text = "Nivel: " + gameManager.currentLevel.ToString();
@@ -32,5 +58,41 @@ public class UIManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(gameTime % 60);
         
         timeText.text = $"Tiempo: {minutes:D2}:{seconds:D2}";
+    }
+
+    public void ShowGameOver()
+    {
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.ShowPanel();
+        }
+        
+        gameManager.GameOver();
+        
+        if (txtInput != null)
+        {
+            txtInput.SetActive(false);
+        }
+    }
+    
+    public void HideGameOver()
+    {
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.gameObject.SetActive(false);
+        }
+
+        Time.timeScale = 1;
+
+        if (txtInput != null)
+        {
+            txtInput.SetActive(true);
+        }
+    }
+    
+    // metodo para reiniciar el juego
+    public void RestartGame()
+    {
+        gameManager.RestartGame();
     }
 }
