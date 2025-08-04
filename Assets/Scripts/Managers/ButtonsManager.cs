@@ -65,4 +65,9 @@ public class ButtonsManager : MonoBehaviour
             SceneManager.LoadScene(2);
         }
     }
+
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
