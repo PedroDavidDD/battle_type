@@ -22,7 +22,7 @@ public class WordManager : MonoBehaviour
     {
         gameManager = FindFirstObjectByType<GameManager>();
         enemySpawner = FindFirstObjectByType<EnemySpawner>();
-        
+
         InitializeEnemies();   
     }
 

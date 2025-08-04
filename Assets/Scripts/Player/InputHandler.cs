@@ -4,6 +4,12 @@ public class InputHandler : MonoBehaviour
 {
     private string currentInput = "";
     public WordManager wordManager;
+    public AudioControllerTyping audioControllerTyping;
+
+    private void Start()
+    {
+        audioControllerTyping = FindFirstObjectByType<AudioControllerTyping>();
+    }
 
     private void Update()
     {
@@ -28,6 +34,7 @@ public class InputHandler : MonoBehaviour
             {
                 currentInput += c;
                 Debug.Log("Libre input: " + c);
+                audioControllerTyping.PlayTeclaSound();
                 wordManager.CheckInput(currentInput);
             }
         }
