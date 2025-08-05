@@ -32,14 +32,14 @@ public class Ball : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Verificar si colisionó con el enemigo asignado
+        // Verificar si colision con el enemigo asignado
         if (collision.transform == target)
         {
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
                 enemy.ReduceLive(1); 
-                Debug.Log($"Bala impactó en el enemigo: {enemy.GetEnemyWord()}");
+                Debug.Log($"Bala impactÃ³ en el enemigo: {enemy.GetEnemyWord()}, su vida es {enemy.enemyLive}");
             }
 
             Destroy(gameObject);

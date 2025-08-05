@@ -10,11 +10,9 @@ public class Enemy : MonoBehaviour
     public float speed = .3f; // Velocidad de movimiento
     private WordManager wordManager;
     private GameManager gameManager;
-    [SerializeField] private int enemyLive = 1;
+    [SerializeField] public int enemyLive = 1;
     
     [SerializeField] private EnemySoundController enemySoundController;
-
-    public int EnemyLive { get => enemyLive; set => enemyLive = value; }
 
     [SerializeField] private Text enemyTextWord;
     [SerializeField] private Slider liveEnemy;
@@ -27,6 +25,9 @@ public class Enemy : MonoBehaviour
         wordManager = GameObject.FindFirstObjectByType<WordManager>();
         gameManager = GameObject.FindFirstObjectByType<GameManager>();
         enemySpawner = GameObject.FindFirstObjectByType<EnemySpawner>();
+
+        // Asignar la vida del enemigo
+        enemyLive = GetEnemyWord().Length;
 
         if (enemySoundController == null)
         {
@@ -47,19 +48,16 @@ public class Enemy : MonoBehaviour
         if (enemyTextWord != null && liveEnemy != null)
         {
             // Actualizar el texto de la palabra y la barra de vida del enemigo
-
             enemyTextWord.text = GetEnemyWord();
 
             liveEnemy.maxValue = GetEnemyWord().Length;
-            liveEnemy.value = EnemyLive;
+            liveEnemy.value = enemyLive;
             Debug.Log("Enemigo registrado en EnemyTextWord y liveEnemy.");
         }
         else
         {
             Debug.LogError("Error: EnemyTextWord o liveEnemy no encontrados.");
         }
-        // Asignar la vida del enemigo
-        EnemyLive = GetEnemyWord().Length;
     }
     private void Update()
     {
@@ -84,11 +82,14 @@ public class Enemy : MonoBehaviour
     {
         this.word = word;
     }
+
     public void ReduceLive(int amount = 1)
     {
         if (gameManager == null) return;
 
         this.enemyLive -= amount;
+        
+        liveEnemy.value = enemyLive;
         
         enemySoundController.PlayGolpeEnemigoSound();
         
@@ -115,7 +116,9 @@ public class Enemy : MonoBehaviour
             inputHandler.SetCurrentInput("");
 
         }
+        
     }
+
     private void EnemyPoints(int points = 10)
     {   
         if (gameManager == null) return;
