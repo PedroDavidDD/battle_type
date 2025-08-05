@@ -1,10 +1,61 @@
 fileFormatVersion: 2
-guid: d34df365bb967124c9a4d03c87bcdb70
+guid: 3dd36fa1498d3834c8401a5a23eec4c1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1595973198392962586
-    second: mar 1_0
+      213: -996234826131125966
+    second: espumas_0
+  - first:
+      213: -7329139630351655207
+    second: espumas_1
+  - first:
+      213: 7856992485037452742
+    second: espumas_2
+  - first:
+      213: -5895130925276150938
+    second: espumas_3
+  - first:
+      213: -6224970597329657963
+    second: espumas_4
+  - first:
+      213: 4189826382878278137
+    second: espumas_5
+  - first:
+      213: -3067618999868075061
+    second: espumas_6
+  - first:
+      213: 3554282898083993895
+    second: espumas_7
+  - first:
+      213: -5557971901591956493
+    second: espumas_8
+  - first:
+      213: -1754891271772231129
+    second: espumas_9
+  - first:
+      213: -3771564282084571173
+    second: espumas_10
+  - first:
+      213: 4940668101250706921
+    second: espumas_11
+  - first:
+      213: 7162817758121723940
+    second: espumas_12
+  - first:
+      213: 6031986013928657565
+    second: espumas_13
+  - first:
+      213: -129715452714192103
+    second: espumas_14
+  - first:
+      213: 119766398186404656
+    second: espumas_15
+  - first:
+      213: -8336956395143009879
+    second: espumas_16
+  - first:
+      213: 2818341143309658195
+    second: espumas_17
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +102,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 190
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,353 +151,221 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mar 1_0
+      name: espumas_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 796
-        width: 191
-        height: 206
+        x: 0
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 0fa20efe5602c5145a602550b558d918
-      internalID: -20788289
+      spriteID: 239c49334b9ac22f0800000000000000
+      internalID: -996234826131125966
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mar 1_1
+      name: espumas_1
       rect:
         serializedVersion: 2
-        x: 254
-        y: 801
-        width: 238
-        height: 208
+        x: 64
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 3aad0ad2dd8da6049b5046742cb968b5
-      internalID: -1376679763
+      spriteID: 9ded6af665aa94a90800000000000000
+      internalID: -7329139630351655207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mar 1_2
+      name: espumas_2
       rect:
         serializedVersion: 2
-        x: 535
-        y: 795
-        width: 225
-        height: 212
+        x: 128
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5f4a1e96b17f93546b566e50bc9b8312
-      internalID: 730285199
+      spriteID: 6cd22997905a90d60800000000000000
+      internalID: 7856992485037452742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mar 1_3
+      name: espumas_3
       rect:
         serializedVersion: 2
-        x: 798
-        y: 795
-        width: 195
-        height: 210
+        x: 192
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 31f5eb8217715c74ba6c5d7873c65916
-      internalID: -1354821354
+      spriteID: 663ce7e38a9403ea0800000000000000
+      internalID: -5895130925276150938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mar 1_4
+      name: espumas_4
       rect:
         serializedVersion: 2
-        x: 29
-        y: 560
-        width: 184
-        height: 198
+        x: 256
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 0c3da6330087b8b428e6144e00114ee9
-      internalID: -1327122342
+      spriteID: 59f1ae819367c99a0800000000000000
+      internalID: -6224970597329657963
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mar 1_5
+      name: espumas_5
       rect:
         serializedVersion: 2
-        x: 261
-        y: 560
-        width: 229
-        height: 200
+        x: 320
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 53a92048aba2be24baec7a59206ef6c8
-      internalID: 450689238
+      spriteID: 9f1050685e0452a30800000000000000
+      internalID: 4189826382878278137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mar 1_6
+      name: espumas_6
       rect:
         serializedVersion: 2
-        x: 537
-        y: 563
-        width: 220
-        height: 199
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: b678642e5e17f0b4989864a478929b99
-      internalID: 957135752
+      spriteID: bc3df96c5c0ad65d0800000000000000
+      internalID: -3067618999868075061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mar 1_7
+      name: espumas_7
       rect:
         serializedVersion: 2
-        x: 804
-        y: 563
-        width: 188
-        height: 201
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 4acee06bd2029c047825b825e0eda069
-      internalID: -1576265292
+      spriteID: 729da83e679535130800000000000000
+      internalID: 3554282898083993895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mar 1_8
+      name: espumas_8
       rect:
         serializedVersion: 2
-        x: 27
-        y: 304
-        width: 184
-        height: 218
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: bfa02143f38d49748997af22adedf8ed
-      internalID: 1431917410
+      spriteID: 3f3520eb00e1ed2b0800000000000000
+      internalID: -5557971901591956493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mar 1_9
+      name: espumas_9
       rect:
         serializedVersion: 2
-        x: 259
-        y: 312
-        width: 225
-        height: 212
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 3c391136820d3ea4ab19bacd04d38d7a
-      internalID: 2043033381
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mar 1_10
-      rect:
-        serializedVersion: 2
-        x: 535
-        y: 308
-        width: 225
-        height: 212
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 97fde431c1808c94eb865178c4ed849c
-      internalID: -1844535469
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mar 1_11
-      rect:
-        serializedVersion: 2
-        x: 799
-        y: 312
-        width: 225
-        height: 212
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69d91c66eb4481e438b5d87b8eae120e
-      internalID: -1678835281
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mar 1_12
-      rect:
-        serializedVersion: 2
-        x: 31
-        y: 96
-        width: 185
-        height: 189
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5a70555ee3cfd884a9eadb533ef55f00
-      internalID: 2022218198
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mar 1_13
-      rect:
-        serializedVersion: 2
-        x: 263
-        y: 95
-        width: 225
-        height: 189
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d75f83d5299fa8c428b4c9021c3e268e
-      internalID: -794769880
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mar 1_14
-      rect:
-        serializedVersion: 2
-        x: 539
-        y: 89
-        width: 213
-        height: 196
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c97f5b3320ca73a48b73a5a9896de53e
-      internalID: -143942322
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mar 1_15
-      rect:
-        serializedVersion: 2
-        x: 799
-        y: 93
-        width: 203
-        height: 198
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 65cfae007cd4dc44795fc61f4e3a4b52
-      internalID: 1606197838
+      spriteID: 72a2596afaf55a7e0800000000000000
+      internalID: -1754891271772231129
       vertices: []
       indices: 
       edges: []
@@ -455,7 +374,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 37a948aa0f4a21446b227a5c0c81fa29
+    spriteID: 7b33c68501f58c446bf34501e546d57e
     internalID: 0
     vertices: []
     indices: 
@@ -465,22 +384,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mar 1_0: -20788289
-      mar 1_1: -1376679763
-      mar 1_10: -1844535469
-      mar 1_11: -1678835281
-      mar 1_12: 2022218198
-      mar 1_13: -794769880
-      mar 1_14: -143942322
-      mar 1_15: 1606197838
-      mar 1_2: 730285199
-      mar 1_3: -1354821354
-      mar 1_4: -1327122342
-      mar 1_5: 450689238
-      mar 1_6: 957135752
-      mar 1_7: -1576265292
-      mar 1_8: 1431917410
-      mar 1_9: 2043033381
+      espumas_0: -996234826131125966
+      espumas_1: -7329139630351655207
+      espumas_2: 7856992485037452742
+      espumas_3: -5895130925276150938
+      espumas_4: -6224970597329657963
+      espumas_5: 4189826382878278137
+      espumas_6: -3067618999868075061
+      espumas_7: 3554282898083993895
+      espumas_8: -5557971901591956493
+      espumas_9: -1754891271772231129
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
