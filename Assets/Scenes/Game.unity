@@ -151,11 +151,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1807707459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 145.311, y: 56.695}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0.000015258789, y: 0}
+  m_SizeDelta: {x: 299.8, y: 56.695}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &18449325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1333,8 +1333,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -162, y: -238}
-  m_SizeDelta: {x: 207.9324, y: 76.38672}
+  m_AnchoredPosition: {x: -709.6629, y: -238}
+  m_SizeDelta: {x: 296.6066, y: 76.3867}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &362417752
 MonoBehaviour:
@@ -1845,11 +1845,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2050849676}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: -0.000030517578, y: 0}
-  m_SizeDelta: {x: 184, y: 56}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 298.04, y: 56}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &526214261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3941,11 +3941,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1839327634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000076293945, y: 0}
-  m_SizeDelta: {x: 182, y: 56}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 299.7, y: 56}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1152286850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3979,7 +3979,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: banana
+  m_Text: 'Palabra: Peru'
 --- !u!222 &1152286851
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6035,8 +6035,8 @@ Tilemap:
   - first: {x: -6, y: -5, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 4
-      m_TileSpriteIndex: 4
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -6095,8 +6095,8 @@ Tilemap:
   - first: {x: 0, y: -5, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 10
+      m_TileSpriteIndex: 10
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -6415,8 +6415,8 @@ Tilemap:
   - first: {x: -6, y: -3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -6445,8 +6445,8 @@ Tilemap:
   - first: {x: -3, y: -3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
+      m_TileIndex: 9
+      m_TileSpriteIndex: 9
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -6675,8 +6675,8 @@ Tilemap:
   - first: {x: 1, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 6
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -6985,8 +6985,8 @@ Tilemap:
   - first: {x: -6, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 3
-      m_TileSpriteIndex: 3
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -7045,8 +7045,8 @@ Tilemap:
   - first: {x: 0, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
+      m_TileIndex: 9
+      m_TileSpriteIndex: 9
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -7195,8 +7195,8 @@ Tilemap:
   - first: {x: -4, y: 1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 8
+      m_TileSpriteIndex: 8
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -7255,8 +7255,8 @@ Tilemap:
   - first: {x: 2, y: 1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 10
+      m_TileSpriteIndex: 10
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -7395,8 +7395,8 @@ Tilemap:
   - first: {x: -3, y: 2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
+      m_TileIndex: 9
+      m_TileSpriteIndex: 9
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -7894,43 +7894,51 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 150
+  - m_RefCount: 148
     m_Data: {fileID: 11400000, guid: 5c105e1cea3d1ec43b8ef323c456ec40, type: 2}
-  - m_RefCount: 58
+  - m_RefCount: 56
     m_Data: {fileID: 11400000, guid: 0e3f261e47f561d428f4a627c04c29e0, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 58321ec5235c44c40a3bb0b790416f06, type: 2}
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 078dd1544690f10489b4ee4ecfd4ba49, type: 2}
-  - m_RefCount: 3
+  - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: 5e4239472a0ba55479bf25b05e2be782, type: 2}
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: fc7d24c4daea86d4fbbbebe0d7fdab8d, type: 2}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 0fedb8292e6439645ad884c20deca7f2, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 3cb25923de4254a4993a33686ea9d241, type: 2}
-  - m_RefCount: 5
+  - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 0bb585e7fd12b2547b6d07c235670486, type: 2}
+  - m_RefCount: 3
+    m_Data: {fileID: 11400000, guid: afab7f8074015be4988a8c28e948b29b, type: 2}
+  - m_RefCount: 2
+    m_Data: {fileID: 11400000, guid: 20ad6d1c83afa7a4bb5fb4392fe2368a, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 150
+  - m_RefCount: 148
     m_Data: {fileID: -20788289, guid: d34df365bb967124c9a4d03c87bcdb70, type: 3}
-  - m_RefCount: 58
+  - m_RefCount: 56
     m_Data: {fileID: -1376679763, guid: d34df365bb967124c9a4d03c87bcdb70, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 730285199, guid: d34df365bb967124c9a4d03c87bcdb70, type: 3}
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: -1354821354, guid: d34df365bb967124c9a4d03c87bcdb70, type: 3}
-  - m_RefCount: 3
+  - m_RefCount: 4
     m_Data: {fileID: 957135752, guid: d34df365bb967124c9a4d03c87bcdb70, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 450689238, guid: d34df365bb967124c9a4d03c87bcdb70, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: -143942322, guid: d34df365bb967124c9a4d03c87bcdb70, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 1606197838, guid: d34df365bb967124c9a4d03c87bcdb70, type: 3}
-  - m_RefCount: 5
+  - m_RefCount: 3
     m_Data: {fileID: -794769880, guid: d34df365bb967124c9a4d03c87bcdb70, type: 3}
+  - m_RefCount: 3
+    m_Data: {fileID: 2022218198, guid: d34df365bb967124c9a4d03c87bcdb70, type: 3}
+  - m_RefCount: 2
+    m_Data: {fileID: -1576265292, guid: d34df365bb967124c9a4d03c87bcdb70, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 228
     m_Data:
@@ -8291,7 +8299,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 225.2, y: 0}
-  m_SizeDelta: {x: 184.1906, y: 56.695}
+  m_SizeDelta: {x: 299.801, y: 56.695}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1807707460
 MonoBehaviour:
@@ -8600,7 +8608,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 91.48834, y: 0}
-  m_SizeDelta: {x: 182.9767, y: 56.318}
+  m_SizeDelta: {x: 299.6989, y: 56.318}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1839327635
 MonoBehaviour:
@@ -9184,7 +9192,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 225.1, y: -49.372574}
-  m_SizeDelta: {x: 184.65393, y: 56.695}
+  m_SizeDelta: {x: 298.0411, y: 56.695}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2050849677
 MonoBehaviour:

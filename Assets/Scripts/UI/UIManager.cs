@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(gameTime / 60);
         int seconds = Mathf.FloorToInt(gameTime % 60);
         
-        timeText.text = $"Tiempo: {minutes:D2}:{seconds:D2}";
+        timeText.text = $"{minutes:D2}:{seconds:D2}";
     }
 
     public void ShowGameOver()
