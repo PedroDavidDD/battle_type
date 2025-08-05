@@ -45,9 +45,9 @@ public class UIManager : MonoBehaviour
         GameObject.Find("WordManager").GetComponent<WordManager>().CheckCharacterMatch(currentInputText, activeWordsText);
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        livesText.text = "" + gameManager.lives.ToString();
-        scoreText.text = "Puntaje: " + gameManager.score.ToString();
-        levelText.text = "Nivel: " + gameManager.currentLevel.ToString();
+        livesText.text = gameManager.lives.ToString();
+        scoreText.text = gameManager.score.ToString();
+        levelText.text = gameManager.currentLevel.ToString();
         inputText.text = currentInputText;
 
         // Obtener el tiempo actual del juego
