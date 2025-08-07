@@ -1,0 +1,25 @@
+{
+    "items": [
+        {"word": "variable", "tag": "programacion"},
+        {"word": "España", "tag": "custom"},
+        {"word": "México", "tag": "custom"},
+        {"word": "Argentina", "tag": "custom"},
+        {"word": "Colombia", "tag": "custom"},
+        {"word": "Perú", "tag": "custom"},
+        {"word": "Chile", "tag": "custom"},
+        {"word": "Venezuela", "tag": "custom"},
+        {"word": "Ecuador", "tag": "custom"},
+        {"word": "Guatemala", "tag": "custom"},
+        {"word": "Cuba", "tag": "custom"},
+        {"word": "Bolivia", "tag": "custom"},
+        {"word": "República Dominicana", "tag": "custom"},
+        {"word": "Honduras", "tag": "custom"},
+        {"word": "Paraguay", "tag": "custom"},
+        {"word": "El Salvador", "tag": "custom"},
+        {"word": "Nicaragua", "tag": "custom"},
+        {"word": "Costa Rica", "tag": "custom"},
+        {"word": "Panamá", "tag": "custom"},
+        {"word": "Uruguay", "tag": "custom"},
+        {"word": "Puerto Rico", "tag": "custom"}
+    ]
+}

@@ -2,29 +2,27 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] GameObject ball;
-    [SerializeField] bool canShoot = false;
-    private AudioSource audioSource;
+    [SerializeField] public PlayerSoundController playerSoundController;
+    
+    public static Player Instance { get; private set; }
 
-
-    void Awake()
+    private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
-
-        if (!audioSource)
+        if (Instance == null)
         {
-            audioSource.Play();
+            Instance = this;
         }
-
-        DontDestroyOnLoad(gameObject);
-    }
-
-    void Update()
-    {
-        if (ball != null && canShoot)
+        else
         {
-            
+            Destroy(gameObject);
         }
     }
 
+    private void Start()
+    {
+        if (playerSoundController == null)
+        { 
+            playerSoundController = GameObject.Find("Player").GetComponent<PlayerSoundController>();
+        }
+    }
 }

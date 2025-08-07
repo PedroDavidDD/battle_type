@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyRepeat : MonoBehaviour
 {
-    // Posici�n espec�fica a la que se mover�n los enemigos cuando toquen este muro
+    // Posicion especifica a la que se moveran los enemigos cuando toquen este muro
     public GameObject spawnerPosition;
 
     private void Start()
@@ -10,7 +10,7 @@ public class EnemyRepeat : MonoBehaviour
         // Buscar el GameObject "EnemySpawner" en la escena
         spawnerPosition = GameObject.Find("EnemySpawner");
 
-        // Verificar si se encontr� el GameObject
+        // Verificar si se encontro el GameObject
         if (spawnerPosition == null)
         {
             Debug.LogError("Error: No se encontro el GameObject 'EnemySpawner'.");
@@ -33,13 +33,13 @@ public class EnemyRepeat : MonoBehaviour
             // Verificar si el script EnemySpawner existe
             if (enemySpawner != null && gameManager != null)
             {
-                // Llamar al m�todo GetPositionRange() desde el script EnemySpawner
+                // Llamar al metodo GetPositionRange() desde el script EnemySpawner
                 Vector3 randomPosition = enemySpawner.GetPositionRange();
 
-                // Mover al enemigo a la posici�n aleatoria generada
+                // Mover al enemigo a la posicion aleatoria generada
                 enemyTransform.position = randomPosition;
 
-
+                // Restar una vida al jugador
                 gameManager.LoseLife();
             }
             else

@@ -1,0 +1,746 @@
+fileFormatVersion: 2
+guid: 69ac456223526844c886d5a972dd36f3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4928452975139465171
+    second: enemigos1_0
+  - first:
+      213: -3553055410889374392
+    second: enemigos1_1
+  - first:
+      213: 8895961538414441179
+    second: enemigos1_2
+  - first:
+      213: -4055631437692262988
+    second: enemigos1_3
+  - first:
+      213: -4104072898046152506
+    second: enemigos1_4
+  - first:
+      213: 4978498082756429061
+    second: enemigos1_5
+  - first:
+      213: -1836623430264246911
+    second: enemigos1_6
+  - first:
+      213: 7924865313970978545
+    second: enemigos1_7
+  - first:
+      213: 805978590039925965
+    second: enemigos1_8
+  - first:
+      213: -2138822409379155896
+    second: enemigos1_9
+  - first:
+      213: 2600610325324111458
+    second: enemigos1_10
+  - first:
+      213: -7843603605869358929
+    second: enemigos1_11
+  - first:
+      213: -5802215971382463572
+    second: enemigos1_12
+  - first:
+      213: -1750588599615972590
+    second: enemigos1_13
+  - first:
+      213: -339182129204274139
+    second: enemigos1_14
+  - first:
+      213: 4776649450124621238
+    second: enemigos1_15
+  - first:
+      213: -7656254069997991400
+    second: enemigos1_16
+  - first:
+      213: -7420650233213991790
+    second: enemigos1_17
+  - first:
+      213: 4292138476142168625
+    second: enemigos1_18
+  - first:
+      213: -7537277188957406732
+    second: enemigos1_19
+  - first:
+      213: 1125224626078335379
+    second: enemigos1_20
+  - first:
+      213: -130337151410941561
+    second: enemigos1_21
+  - first:
+      213: -5182300359278613244
+    second: enemigos1_22
+  - first:
+      213: 4248438256608867246
+    second: enemigos1_23
+  - first:
+      213: 6735308551569719409
+    second: enemigos1_24
+  - first:
+      213: 8188883508630839191
+    second: enemigos1_25
+  - first:
+      213: -3542008325199491632
+    second: enemigos1_26
+  - first:
+      213: 4557784755102198106
+    second: enemigos1_27
+  - first:
+      213: 5091021011886587749
+    second: enemigos1_28
+  - first:
+      213: 5023544945974272289
+    second: enemigos1_29
+  - first:
+      213: -8888867875392634851
+    second: enemigos1_30
+  - first:
+      213: -7333183798584575101
+    second: enemigos1_31
+  - first:
+      213: -1499710257915321609
+    second: enemigos1_32
+  - first:
+      213: -2122622755228075043
+    second: enemigos1_33
+  - first:
+      213: -7304912095227775297
+    second: enemigos1_34
+  - first:
+      213: -7598877947968042963
+    second: enemigos1_35
+  - first:
+      213: 717549271730350942
+    second: enemigos1_36
+  - first:
+      213: 8234159315625507259
+    second: enemigos1_37
+  - first:
+      213: -7490566735996081727
+    second: enemigos1_38
+  - first:
+      213: 1327984952975440202
+    second: enemigos1_39
+  - first:
+      213: -2109416990724392690
+    second: enemigos1_40
+  - first:
+      213: 1312216017584524578
+    second: enemigos1_41
+  - first:
+      213: -6483602424326116380
+    second: enemigos1_42
+  - first:
+      213: 831211510928242861
+    second: enemigos1_43
+  - first:
+      213: -3413782341716300870
+    second: enemigos1_44
+  - first:
+      213: -2797843617674098890
+    second: enemigos1_45
+  - first:
+      213: -1993670655730762209
+    second: enemigos1_46
+  - first:
+      213: -5143525505293992599
+    second: enemigos1_47
+  - first:
+      213: 5476053717539096715
+    second: enemigos1_48
+  - first:
+      213: -3057948112430378680
+    second: enemigos1_49
+  - first:
+      213: -7689201805178953746
+    second: enemigos1_50
+  - first:
+      213: -1293695768791641199
+    second: enemigos1_51
+  - first:
+      213: -1016235225007447607
+    second: enemigos1_52
+  - first:
+      213: 5387283327213550779
+    second: enemigos1_53
+  - first:
+      213: -2022529452139897338
+    second: enemigos1_54
+  - first:
+      213: 7001026107544922252
+    second: enemigos1_55
+  - first:
+      213: 1758974734381838679
+    second: enemigos1_56
+  - first:
+      213: -390006706220906344
+    second: enemigos1_57
+  - first:
+      213: 5026441946262758180
+    second: enemigos1_58
+  - first:
+      213: -7666601137259500111
+    second: enemigos1_59
+  - first:
+      213: 4515287332609344668
+    second: enemigos1_60
+  - first:
+      213: -7952378032800802185
+    second: enemigos1_61
+  - first:
+      213: 1767527813499121560
+    second: enemigos1_62
+  - first:
+      213: -2626788780951198362
+    second: enemigos1_63
+  - first:
+      213: -7378740473718089411
+    second: enemigos1_64
+  - first:
+      213: -4902706491310262174
+    second: enemigos1_65
+  - first:
+      213: -8129515506723033599
+    second: enemigos1_66
+  - first:
+      213: 6334958162271933043
+    second: enemigos1_67
+  - first:
+      213: -6420424678241285777
+    second: enemigos1_68
+  - first:
+      213: 8053998117413259331
+    second: enemigos1_69
+  - first:
+      213: -4251338475353864840
+    second: enemigos1_70
+  - first:
+      213: -2356172850827686377
+    second: enemigos1_71
+  - first:
+      213: 1014715968122977918
+    second: enemigos1_72
+  - first:
+      213: 7033291133373483937
+    second: enemigos1_73
+  - first:
+      213: 1939719073958438331
+    second: enemigos1_74
+  - first:
+      213: -4393132543440162845
+    second: enemigos1_75
+  - first:
+      213: 4662808332435668363
+    second: enemigos1_76
+  - first:
+      213: -6649097687556950718
+    second: enemigos1_77
+  - first:
+      213: -5405647617430027202
+    second: enemigos1_78
+  - first:
+      213: -7298753840928505509
+    second: enemigos1_79
+  - first:
+      213: 7360661950758779359
+    second: enemigos1_80
+  - first:
+      213: 7492564805016544951
+    second: enemigos1_81
+  - first:
+      213: -5470810438899886291
+    second: enemigos1_82
+  - first:
+      213: -6457771560099335683
+    second: enemigos1_83
+  - first:
+      213: -2418679499185446459
+    second: enemigos1_84
+  - first:
+      213: 791497840169246521
+    second: enemigos1_85
+  - first:
+      213: 591663427156110561
+    second: enemigos1_86
+  - first:
+      213: 7378719011738953405
+    second: enemigos1_87
+  - first:
+      213: 4724540536188407743
+    second: enemigos1_88
+  - first:
+      213: -1908956486468278810
+    second: enemigos1_89
+  - first:
+      213: -150887579324719066
+    second: enemigos1_90
+  - first:
+      213: -5352997321754608547
+    second: enemigos1_91
+  - first:
+      213: -416191411006512312
+    second: enemigos1_92
+  - first:
+      213: -1533017398185892084
+    second: enemigos1_93
+  - first:
+      213: 362506479889281245
+    second: enemigos1_94
+  - first:
+      213: -925980031194967474
+    second: enemigos1_95
+  - first:
+      213: -3975042172861591448
+    second: enemigos1_96
+  - first:
+      213: 118173692512222699
+    second: enemigos1_97
+  - first:
+      213: -5761619964093946718
+    second: enemigos1_98
+  - first:
+      213: 6363806190805116459
+    second: enemigos1_99
+  - first:
+      213: 8525808953528228546
+    second: enemigos1_100
+  - first:
+      213: 8997345368072151412
+    second: enemigos1_101
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 30
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: enemigos1_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 439
+        width: 47
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d7a76b6ed1656440800000000000000
+      internalID: 4928452975139465171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemigos1_1
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 440
+        width: 48
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 845c8aebde201bec0800000000000000
+      internalID: -3553055410889374392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemigos1_7
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 383
+        width: 47
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fefd0ce307cafd60800000000000000
+      internalID: 7924865313970978545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemigos1_14
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 325
+        width: 58
+        height: 43
+      alignment: 9
+      pivot: {x: 0.4241001, y: 0.47952414}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52c5e9a86abfa4bf0800000000000000
+      internalID: -339182129204274139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemigos1_15
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 324
+        width: 46
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b53e3bfd511a4240800000000000000
+      internalID: 4776649450124621238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemigos1_31
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 193
+        width: 57
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38b77b4203c4b3a90800000000000000
+      internalID: -7333183798584575101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemigos1_32
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 190
+        width: 62
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f2a2fa5775ff2be0800000000000000
+      internalID: -1499710257915321609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemigos1_33
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 187
+        width: 61
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddb387aa9ddea82e0800000000000000
+      internalID: -2122622755228075043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemigos1_35
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 188
+        width: 61
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d28c0d354cc5b8690800000000000000
+      internalID: -7598877947968042963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemigos1_37
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 188
+        width: 58
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb9f4d7654c954270800000000000000
+      internalID: 8234159315625507259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 59fd65c8bda97464d99582dee6b17a5b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      enemigos1_0: 4928452975139465171
+      enemigos1_1: -3553055410889374392
+      enemigos1_10: 2600610325324111458
+      enemigos1_100: 8525808953528228546
+      enemigos1_101: 8997345368072151412
+      enemigos1_102: 1514814710
+      enemigos1_11: -7843603605869358929
+      enemigos1_12: -5802215971382463572
+      enemigos1_13: -1750588599615972590
+      enemigos1_14: -339182129204274139
+      enemigos1_15: 4776649450124621238
+      enemigos1_16: -7656254069997991400
+      enemigos1_17: -7420650233213991790
+      enemigos1_18: 4292138476142168625
+      enemigos1_19: -7537277188957406732
+      enemigos1_2: 8895961538414441179
+      enemigos1_20: 1125224626078335379
+      enemigos1_21: -130337151410941561
+      enemigos1_22: -5182300359278613244
+      enemigos1_23: 4248438256608867246
+      enemigos1_24: 6735308551569719409
+      enemigos1_25: 8188883508630839191
+      enemigos1_26: -3542008325199491632
+      enemigos1_27: 4557784755102198106
+      enemigos1_28: 5091021011886587749
+      enemigos1_29: 5023544945974272289
+      enemigos1_3: -4055631437692262988
+      enemigos1_30: -8888867875392634851
+      enemigos1_31: -7333183798584575101
+      enemigos1_32: -1499710257915321609
+      enemigos1_33: -2122622755228075043
+      enemigos1_34: -7304912095227775297
+      enemigos1_35: -7598877947968042963
+      enemigos1_36: 717549271730350942
+      enemigos1_37: 8234159315625507259
+      enemigos1_38: -7490566735996081727
+      enemigos1_39: 1327984952975440202
+      enemigos1_4: -4104072898046152506
+      enemigos1_40: -2109416990724392690
+      enemigos1_41: 1312216017584524578
+      enemigos1_42: -6483602424326116380
+      enemigos1_43: 831211510928242861
+      enemigos1_44: -3413782341716300870
+      enemigos1_45: -2797843617674098890
+      enemigos1_46: -1993670655730762209
+      enemigos1_47: -5143525505293992599
+      enemigos1_48: 5476053717539096715
+      enemigos1_49: -3057948112430378680
+      enemigos1_5: 4978498082756429061
+      enemigos1_50: -7689201805178953746
+      enemigos1_51: -1293695768791641199
+      enemigos1_52: -1016235225007447607
+      enemigos1_53: 5387283327213550779
+      enemigos1_54: -2022529452139897338
+      enemigos1_55: 7001026107544922252
+      enemigos1_56: 1758974734381838679
+      enemigos1_57: -390006706220906344
+      enemigos1_58: 5026441946262758180
+      enemigos1_59: -7666601137259500111
+      enemigos1_6: -1836623430264246911
+      enemigos1_60: 4515287332609344668
+      enemigos1_61: -7952378032800802185
+      enemigos1_62: 1767527813499121560
+      enemigos1_63: -2626788780951198362
+      enemigos1_64: -7378740473718089411
+      enemigos1_65: -4902706491310262174
+      enemigos1_66: -8129515506723033599
+      enemigos1_67: 6334958162271933043
+      enemigos1_68: -6420424678241285777
+      enemigos1_69: 8053998117413259331
+      enemigos1_7: 7924865313970978545
+      enemigos1_70: -4251338475353864840
+      enemigos1_71: -2356172850827686377
+      enemigos1_72: 1014715968122977918
+      enemigos1_73: 7033291133373483937
+      enemigos1_74: 1939719073958438331
+      enemigos1_75: -4393132543440162845
+      enemigos1_76: 4662808332435668363
+      enemigos1_77: -6649097687556950718
+      enemigos1_78: -5405647617430027202
+      enemigos1_79: -7298753840928505509
+      enemigos1_8: 805978590039925965
+      enemigos1_80: 7360661950758779359
+      enemigos1_81: 7492564805016544951
+      enemigos1_82: -5470810438899886291
+      enemigos1_83: -6457771560099335683
+      enemigos1_84: -2418679499185446459
+      enemigos1_85: 791497840169246521
+      enemigos1_86: 591663427156110561
+      enemigos1_87: 7378719011738953405
+      enemigos1_88: 4724540536188407743
+      enemigos1_89: -1908956486468278810
+      enemigos1_9: -2138822409379155896
+      enemigos1_90: -150887579324719066
+      enemigos1_91: -5352997321754608547
+      enemigos1_92: -416191411006512312
+      enemigos1_93: -1533017398185892084
+      enemigos1_94: 362506479889281245
+      enemigos1_95: -925980031194967474
+      enemigos1_96: -3975042172861591448
+      enemigos1_97: 118173692512222699
+      enemigos1_98: -5761619964093946718
+      enemigos1_99: 6363806190805116459
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

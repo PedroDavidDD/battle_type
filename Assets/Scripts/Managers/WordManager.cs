@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Windows;
+using UnityEngine.UI;
 
 public class WordManager : MonoBehaviour
 {
@@ -17,11 +16,14 @@ public class WordManager : MonoBehaviour
     // Palabra seleccionada
     private string selectedWord = "";
     public ButtonController buttonController;
-    
+    public EnemySpawner enemySpawner;
+
     private void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        InitializeEnemies();
+        gameManager = FindFirstObjectByType<GameManager>();
+        enemySpawner = FindFirstObjectByType<EnemySpawner>();
+
+        InitializeEnemies();   
     }
 
     // Método para inicializar los enemigos
@@ -32,7 +34,7 @@ public class WordManager : MonoBehaviour
         processedCharacters.Clear();
 
         // Buscar y registrar todos los enemigos en la escena
-        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        Enemy[] enemies = GameObject.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         foreach (Enemy enemy in enemies)
         {
             RegisterEnemy(enemy);
@@ -46,8 +48,12 @@ public class WordManager : MonoBehaviour
 
     public void UnregisterEnemy(Enemy enemy)
     {
-        activeEnemies.Remove(enemy);
+        if (activeEnemies.Remove(enemy))
+        {
+            Debug.Log($"Enemigo eliminado. Enemigos restantes: {activeEnemies.Count}");
+        }
     }
+    
     public void CheckInput(string currentInput)
     {
         if (buttonController){
@@ -169,6 +175,57 @@ public class WordManager : MonoBehaviour
         foreach (var entry in processedCharacters)
         {
             Debug.Log($"Palabra: {entry.Key}, Progreso: {entry.Value}");
+        }
+    }
+    
+    // Comprobar si la entrada del jugador coincide con las palabras de los enemigos para actualizar el color del enemigo y las palabras activas en el UI
+    public void CheckCharacterMatch(string currentInputText, Text activeWordsText)
+    {
+        // Iterar sobre todos los enemigos activos
+        foreach (var enemyObject in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Enemy enemy = enemyObject.GetComponent<Enemy>();
+            if (enemy == null) continue; // Saltar si falta el script Enemy
+
+            string word = enemy.GetEnemyWord(); // Palabra asignada al enemigo
+
+            // Buscar el hijo "Body" del enemigo
+            Transform bodyTransform = enemyObject.transform.Find("Body");
+            if (bodyTransform == null)
+            {
+                Debug.LogWarning($"El enemigo {enemyObject.name} no tiene un hijo llamado 'Body'.");
+                continue;
+            }
+
+            // Acceder al SpriteRenderer del hijo "Body"
+            SpriteRenderer bodySpriteRenderer = bodyTransform.GetComponent<SpriteRenderer>();
+            if (bodySpriteRenderer == null)
+            {
+                Debug.LogWarning($"El hijo 'Body' del enemigo {enemyObject.name} no tiene un SpriteRenderer.");
+                continue;
+            }
+
+            // Manejar el caso cuando la entrada del jugador esta vacia
+            if (string.IsNullOrEmpty(currentInputText))
+            {
+                // Restaurar el color del SpriteRenderer del hijo "Body" a blanco
+                bodySpriteRenderer.color = Color.white;
+                continue;
+            }
+
+            // Comparar la entrada del jugador con la palabra del enemigo
+            if (currentInputText.Length <= word.Length && word.StartsWith(currentInputText))
+            {
+                activeWordsText.text = "Enemigo: " + word;
+
+                // Cambiar el color del SpriteRenderer del hijo "Body" a amarillo
+                bodySpriteRenderer.color = new Color(1f, 0.729f, 0.082f); // Amarillo aproximado
+            }
+            else
+            {
+                // Restaurar el color del SpriteRenderer del hijo "Body" a blanco
+                bodySpriteRenderer.color = Color.white;
+            }
         }
     }
 }

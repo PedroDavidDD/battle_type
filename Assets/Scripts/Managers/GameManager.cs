@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,42 +17,42 @@ public class GameManager : MonoBehaviour
     // Caracteres escritos
     public int wordsCompleted;
     // Enemigos eliminados
+    [Header("Enemy deleted")]
     public int enemiesKilled;
-    public GameOverPanel gameOverPanel;
     
     public int currentLevel = 0;
     public int enemiesPerLevel = 5;
 
-    public GameObject txtInput;
-    public PlayerSoundController playerSoundController;
+    [Header("Enemy data")]
+    public int totalEnemiesToSpawn = 0;  // Total de enemigos que deben aparecer
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
-
+        
+        // Inicializar el tiempo al inicio
         gameStartTime = Time.time;
     }
 
     private void Start()
     {
         lives = 5;
-        gameOverPanel = gameOverPanel.GetComponent<GameOverPanel>();
-        playerSoundController = GameObject.Find("Player").GetComponent<PlayerSoundController>();
     }
-
+    
     public void AddScore(int points)
     {
-        if (isGameOver) return; // Evitar cambios si el juego ha terminado
+        if (isGameOver) return;
 
         score += points;
-        Debug.Log("Score: " + score);
     }
 
     public void AddLevel()
@@ -62,36 +63,22 @@ public class GameManager : MonoBehaviour
 
     public void LoseLife()
     {
-        if (isGameOver) return; // Evitar cambios si el juego ha terminado
+        if (isGameOver) return;
 
         lives--;
-        Debug.Log("Lives: " + lives);
 
         if (lives <= 0)
         {
             // Mostrar el panel del Game Over
-            ShowGameOver();
+            UIManager.Instance.ShowGameOver();
             
-            playerSoundController.PlayMuerteJugadorSound();
+            Player.Instance.playerSoundController.PlayMuerteJugadorSound();
+        } else {
+            UIManager.Instance.HideGameOver();
         }
     }
 
-    public void ShowGameOver()
-    {
-        if (gameOverPanel != null)
-        {
-            gameOverPanel.ShowPanel();
-        }
-        
-        GameOver();
-        
-        if (txtInput != null)
-        {
-            txtInput.SetActive(false);
-        }
-    }
-
-    private void GameOver()
+    public void GameOver()
     {
         if (isGameOver) return; // Evitar ejecutar Game Over multiples veces
 
@@ -102,49 +89,27 @@ public class GameManager : MonoBehaviour
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
 
-    public void HideGameOver()
-    {
-        if (gameOverPanel != null)
-        {
-            gameOverPanel.gameObject.SetActive(false);
-        }
-
-        Time.timeScale = 1;
-
-        if (txtInput != null)
-        {
-            txtInput.SetActive(true);
-        }
-    }
-
     public void RestartGame()
     {
-        // Restablecer el tiempo del juego
-        Time.timeScale = 1;
+        // Primero restablecer el tiempo
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
 
         // Reiniciar variables
         score = 0;
-        lives = 10;
+        lives = 5;
         isGameOver = false;
         currentLevel = 0;
-        
-        // Restablecer el tiempo del juego
-        gameStartTime = 0f;      
-        // Palabras completadas
         wordsCompleted = 0;
-        // Enemigos eliminados
-        enemiesKilled = 0;  
-
+        enemiesKilled = 0;
+        
         Debug.Log("Juego reiniciado!");
+
         // Recargar la escena actual
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         
-        // Obtener referencia al WordManager y inicializar los enemigos
-        WordManager wordManager = FindObjectOfType<WordManager>();
-        if (wordManager != null)
-        {
-            wordManager.InitializeEnemies();
-        }
+        // Reiniciar el tiempo justo después de cargar la escena
+        gameStartTime = Time.time;
     }
 
     public void AddWordCompleted()
@@ -166,4 +131,5 @@ public class GameManager : MonoBehaviour
     {
         return Time.time - gameStartTime;
     }
+
 }

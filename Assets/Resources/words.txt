@@ -1,102 +1,35 @@
-banana
-apple
-car
-dog
-moon
-elephant
-sun
-house
-tree
-computer
-phone
-book
-ocean
-mountain
-guitar
-pizza
-coffee
-window
-garden
-bicycle
-rain
-star
-cloud
-river
-forest
-keyboard
-lamp
-mirror
-door
-clock
-hat
-shoe
-shirt
-pants
-smile
-laugh
-jump
-swim
-fly
-sing
-music
-rock
-paper
-scissors
-water
-fire
-earth
-wind
-flower
-grass
-bird
-fish
-cat
-lion
-tiger
-bear
-snake
-spider
-horse
-cow
-chicken
-duck
-frog
-butterfly
-dragon
-unicorn
-robot
-alien
-planet
-spaceship
-castle
-bridge
-road
-street
-park
-school
-office
-hospital
-store
-beach
-island
-desert
-snow
-ice
-storm
-lightning
-thunder
-rainbow
-shadow
-light
-dark
-color
-red
-blue
-green
-yellow
-black
-white
-purple
-pink
-orange
-UTP
+{
+    "items": [
+        {"word": "variable", "tag": "programacion"},
+        {"word": "function", "tag": "programacion"},
+        {"word": "loop", "tag": "programacion"},
+        {"word": "class", "tag": "programacion"},
+        {"word": "object", "tag": "programacion"},
+        {"word": "array", "tag": "programacion"},
+        {"word": "string", "tag": "programacion"},
+        {"word": "integer", "tag": "programacion"},
+        {"word": "boolean", "tag": "programacion"},
+        {"word": "debug", "tag": "programacion"},
+        {"word": "compile", "tag": "programacion"},
+        {"word": "syntax", "tag": "programacion"},
+        {"word": "algorithm", "tag": "programacion"},
+        {"word": "database", "tag": "programacion"},
+        {"word": "server", "tag": "programacion"},
+        
+        {"word": "human", "tag": "razas"},
+        {"word": "elf", "tag": "razas"},
+        {"word": "dwarf", "tag": "razas"},
+        {"word": "orc", "tag": "razas"},
+        {"word": "goblin", "tag": "razas"},
+        {"word": "troll", "tag": "razas"},
+        {"word": "gnome", "tag": "razas"},
+        {"word": "fairy", "tag": "razas"},
+        {"word": "vampire", "tag": "razas"},
+        {"word": "werewolf", "tag": "razas"},
+        {"word": "angel", "tag": "razas"},
+        {"word": "demon", "tag": "razas"},
+        {"word": "centaur", "tag": "razas"},
+        {"word": "mermaid", "tag": "razas"},
+        {"word": "minotaur", "tag": "razas"}
+    ]
+}

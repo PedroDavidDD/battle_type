@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour
 {
@@ -32,7 +33,8 @@ public class ButtonController : MonoBehaviour
         else
         {
             // Reanudar el juego
-            Time.timeScale = 1f;
+            ResetTime();
+            
             if (pausePanel != null)
             {
                 pausePanel.SetActive(false);
@@ -43,4 +45,35 @@ public class ButtonController : MonoBehaviour
             }
         }
     }
+    
+    public void RestartGame()
+    {
+        TogglePause();
+        SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex );
+    }
+    
+    public void Menu()
+    {
+        TogglePause();
+        SceneManager.LoadScene(0);
+    }
+    
+    public void Quit()
+    {
+        TogglePause();
+        Application.Quit();
+    }
+    
+    public void GoToCategories()
+    {
+        TogglePause();
+        SceneManager.LoadScene(1);
+    }
+    // Resetear el tiempo normal 
+    public void ResetTime()
+    {
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
+    }
+    
 }
